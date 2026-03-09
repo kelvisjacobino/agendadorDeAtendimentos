@@ -1,0 +1,7 @@
+========================================
+RELATORIO: kelvis
+========================================
+PROBLEMA: aa
+CAUSA: a
+SOLUCAO: aa
+STATUS: FINALIZADO

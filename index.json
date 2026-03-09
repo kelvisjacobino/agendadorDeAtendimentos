@@ -1,0 +1,138 @@
+[
+  {
+    "cliente": "KELVIS",
+    "atendimento": "141162",
+    "arquivo": "KELVIS_ATD141162_20260306.txt",
+    "caminho": "docs/2026/03/KELVIS_ATD141162_20260306.txt",
+    "data": "20260306",
+    "conteudo": "\n========================================\nrelatorio de atendimento\n========================================\ncliente: kelvis\ncod cliente: 2503\ncod atendimento: 141162\ndata: 06/03/2026, 17:21:26\nresponsavel: kelvis\n----------------------------------------\nproblema:\nteste \n----------------------------------------\ncausa raiz:\nteste plata forma\n----------------------------------------\nsolucao:\ntestada plataforma \n----------------------------------------\nstatus: finalizado\n========================================\n"
+  },
+  {
+    "cliente": "CASA DO SINDICO",
+    "atendimento": "715206",
+    "arquivo": "CASA_DO_SINDICO_ATD715206_20260306.txt",
+    "caminho": "docs/2026/03/CASA_DO_SINDICO_ATD715206_20260306.txt",
+    "data": "20260306",
+    "conteudo": "\n========================================\nrelatorio de atendimento\n========================================\ncliente: casa do sindico\ncod cliente: 890\ncod atendimento: 715206\ndata: 06/03/2026, 17:30:34\nresponsavel: kelvis\n----------------------------------------\nproblema:\nerro ao validar nota fiscal\n----------------------------------------\ncausa raiz:\nicms com valor negativo\n----------------------------------------\nsolucao:\najustado o valor com o seguinte select\nselect im.classe_fiscal, im.vlr_icms_retido, rowid\nfrom itens_movimento im\nwhere pedido_id = 242\nand im.tipo_movimento = 'sd'\n----------------------------------------\nstatus: finalizado\n========================================\n"
+  },
+  {
+    "cliente": "loja teste",
+    "atendimento": "12354",
+    "arquivo": "loja_teste_ATD12354_20260306.txt",
+    "caminho": "docs/2026/03/loja_teste_ATD12354_20260306.txt",
+    "data": "20260306",
+    "conteudo": "\n========================================\nrelatorio de atendimento\n========================================\ncliente: loja teste\ncod cliente: 1490\ncod atendimento: 12354\ndata: 06/03/2026, 18:07:18\nresponsavel: kelvis\n----------------------------------------\nproblema:\naasdf\n----------------------------------------\ncausa raiz:\nasdfas\n----------------------------------------\nsolucao:\nasdfasdf\n----------------------------------------\nstatus: finalizado\n========================================\n"
+  },
+  {
+    "cliente": "loja teste",
+    "atendimento": "12354",
+    "arquivo": "loja_teste_ATD12354_20260306.txt",
+    "caminho": "docs/2026/03/loja_teste_ATD12354_20260306.txt",
+    "conteudo": "\n========================================\nrelatorio de atendimento\n========================================\ncliente: loja teste\ncod cliente: 1490\ncod atendimento: 12354\ndata: 06/03/2026, 18:07:18\nresponsavel: kelvis\n----------------------------------------\nproblema:\naasdf\n----------------------------------------\ncausa raiz:\nasdfas\n----------------------------------------\nsolucao:\nasdfasdf\n----------------------------------------\nstatus: finalizado\n========================================\n"
+  },
+  {
+    "cliente": "kelvis",
+    "atendimento": "2503",
+    "arquivo": "kelvis_ATD2503_20260309.txt",
+    "caminho": "docs/2026/03/kelvis_ATD2503_20260309.txt",
+    "data": "20260309",
+    "conteudo": "\n========================================\nrelatorio de atendimento\n========================================\ncliente: kelvis\ncod cliente: 1411\ncod atendimento: 2503\ndata: 09/03/2026, 09:36:48\nresponsavel: kelvis\n----------------------------------------\nproblema:\ncansaço\n----------------------------------------\ncausa raiz:\nbebida\n----------------------------------------\nsolucao:\ndormir\n----------------------------------------\nstatus: finalizado\n========================================"
+  },
+  {
+    "cliente": "kelvis",
+    "atendimento": "2503",
+    "arquivo": "kelvis_ATD2503_20260309.txt",
+    "caminho": "docs/2026/03/kelvis_ATD2503_20260309.txt",
+    "conteudo": "\n========================================\nrelatorio de atendimento\n========================================\ncliente: kelvis\ncod cliente: 1411\ncod atendimento: 2503\ndata: 09/03/2026, 09:36:48\nresponsavel: kelvis\n----------------------------------------\nproblema:\ncansaço\n----------------------------------------\ncausa raiz:\nbebida\n----------------------------------------\nsolucao:\ndormir\n----------------------------------------\nstatus: finalizado\n========================================"
+  },
+  {
+    "cliente": "aaa",
+    "atendimento": "250388",
+    "arquivo": "aaa_ATD250388_20260309.txt",
+    "caminho": "docs/2026/03/aaa_ATD250388_20260309.txt",
+    "data": "20260309",
+    "conteudo": "relatório: aaa\nprob: aaa\nsol: aaaa"
+  },
+  {
+    "cliente": "aaa",
+    "atendimento": "250388",
+    "arquivo": "aaa_ATD250388_20260309.txt",
+    "caminho": "docs/2026/03/aaa_ATD250388_20260309.txt",
+    "conteudo": "relatório: aaa\nprob: aaa\nsol: aaaa"
+  },
+  {
+    "cliente": "aaaa",
+    "atendimento": "1516",
+    "arquivo": "aaaa_ATD1516_20260309.txt",
+    "caminho": "docs/2026/03/aaaa_ATD1516_20260309.txt",
+    "data": "20260309",
+    "conteudo": "relatório: aaaa\nprob: asdfa\nsol: adsfasdf"
+  },
+  {
+    "cliente": "aaaa",
+    "atendimento": "1516",
+    "arquivo": "aaaa_ATD1516_20260309.txt",
+    "caminho": "docs/2026/03/aaaa_ATD1516_20260309.txt",
+    "conteudo": "relatório: aaaa\nprob: asdfa\nsol: adsfasdf"
+  },
+  {
+    "cliente": "kelvis",
+    "atendimento": "2235",
+    "arquivo": "kelvis_ATD2235_20260309.txt",
+    "caminho": "docs/2026/03/kelvis_ATD2235_20260309.txt",
+    "data": "20260309",
+    "conteudo": "========================================\nrelatorio: kelvis\n========================================\nproblema: aa\ncausa: a\nsolucao: aa\nstatus: finalizado"
+  },
+  {
+    "cliente": "kelvis",
+    "atendimento": "2235",
+    "arquivo": "kelvis_ATD2235_20260309.txt",
+    "caminho": "docs/2026/03/kelvis_ATD2235_20260309.txt",
+    "conteudo": "========================================\nrelatorio: kelvis\n========================================\nproblema: aa\ncausa: a\nsolucao: aa\nstatus: finalizado"
+  },
+  {
+    "cliente": "kelvis",
+    "atendimento": "250389",
+    "arquivo": "kelvis_ATD250389_20260309.txt",
+    "caminho": "docs/2026/03/kelvis_ATD250389_20260309.txt",
+    "data": "20260309",
+    "conteudo": "relatório: kelvis\ncod: 1411\nproblema: tste"
+  },
+  {
+    "cliente": "kelvis",
+    "atendimento": "250389",
+    "arquivo": "kelvis_ATD250389_20260309.txt",
+    "caminho": "docs/2026/03/kelvis_ATD250389_20260309.txt",
+    "conteudo": "relatório: kelvis\ncod: 1411\nproblema: tste"
+  },
+  {
+    "cliente": "teste",
+    "atendimento": "251313",
+    "arquivo": "teste_ATD251313_20260309.txt",
+    "caminho": "docs/2026/03/teste_ATD251313_20260309.txt",
+    "data": "20260309",
+    "conteudo": "relatório: teste\ncod: 1411\nproblema: adfas"
+  },
+  {
+    "cliente": "teste",
+    "atendimento": "251313",
+    "arquivo": "teste_ATD251313_20260309.txt",
+    "caminho": "docs/2026/03/teste_ATD251313_20260309.txt",
+    "conteudo": "relatório: teste\ncod: 1411\nproblema: adfas"
+  },
+  {
+    "cliente": "kelvis",
+    "atendimento": "1010",
+    "arquivo": "kelvis_ATD1010_20260309.txt",
+    "caminho": "docs/2026/03/kelvis_ATD1010_20260309.txt",
+    "data": "20260309",
+    "conteudo": "relatório: kelvis\ncod: 1411\nproblema: nfce"
+  },
+  {
+    "cliente": "kelvis",
+    "atendimento": "1010",
+    "arquivo": "kelvis_ATD1010_20260309.txt",
+    "caminho": "docs/2026/03/kelvis_ATD1010_20260309.txt",
+    "conteudo": "relatório: kelvis\ncod: 1411\nproblema: nfce"
+  }
+]

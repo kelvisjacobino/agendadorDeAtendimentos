@@ -1,0 +1,25 @@
+
+========================================
+RELATORIO DE ATENDIMENTO
+========================================
+CLIENTE: CASA DO SINDICO
+COD CLIENTE: 890
+COD ATENDIMENTO: 715206
+DATA: 06/03/2026, 17:30:34
+RESPONSAVEL: Kelvis
+----------------------------------------
+PROBLEMA:
+ERRO AO VALIDAR NOTA FISCAL
+----------------------------------------
+CAUSA RAIZ:
+ICMS COM VALOR NEGATIVO
+----------------------------------------
+SOLUCAO:
+AJUSTADO O VALOR COM O SEGUINTE SELECT
+SELECT IM.CLASSE_FISCAL, IM.VLR_ICMS_RETIDO, ROWID
+FROM ITENS_MOVIMENTO IM
+WHERE PEDIDO_ID = 242
+AND IM.TIPO_MOVIMENTO = 'SD'
+----------------------------------------
+STATUS: FINALIZADO
+========================================

@@ -1,0 +1,21 @@
+
+========================================
+RELATORIO DE ATENDIMENTO
+========================================
+CLIENTE: KELVIS
+COD CLIENTE: 2503
+COD ATENDIMENTO: 141162
+DATA: 06/03/2026, 17:21:26
+RESPONSAVEL: Kelvis
+----------------------------------------
+PROBLEMA:
+teste 
+----------------------------------------
+CAUSA RAIZ:
+teste plata forma
+----------------------------------------
+SOLUCAO:
+testada plataforma 
+----------------------------------------
+STATUS: FINALIZADO
+========================================

@@ -1,0 +1,21 @@
+
+========================================
+RELATORIO DE ATENDIMENTO
+========================================
+CLIENTE: Kelvis Jacobino
+COD CLIENTE: 1411
+COD ATENDIMENTO: 714256
+DATA: 06/03/2026, 15:38:58
+RESPONSAVEL: Kelvis
+----------------------------------------
+PROBLEMA:
+erro ao validar nota
+----------------------------------------
+CAUSA RAIZ:
+emissor fechado
+----------------------------------------
+SOLUCAO:
+iniciado o emissor fiscal
+----------------------------------------
+STATUS: FINALIZADO
+========================================

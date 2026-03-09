@@ -1,0 +1,642 @@
+﻿=== REVISAO DE CODIGO: PROJETO DOC-AI ===
+
+
+--- INICIO ARQUIVO: atendimentos.js ---
+Caminho: C:\docAi\database\atendimentos.js
+---------------------------------------
+const oracledb = require("oracledb");
+const { getConnection } = require("./oracle");
+
+// database/atendimentos.js
+
+async function salvarAtendimento(dados) {
+    let conn;
+    try {
+        conn = await getConnection();
+        // Usando MERGE para evitar ORA-00001 (Unique Constraint Violated)
+        const sql = `
+            MERGE INTO DOCAI_ATENDIMENTOS A
+            USING (SELECT :codAtendimento AS COD_ATENDIMENTO FROM dual) X
+            ON (A.COD_ATENDIMENTO = X.COD_ATENDIMENTO)
+            WHEN MATCHED THEN
+                UPDATE SET STATUS = :status, RESPONSAVEL = :responsavel, CONTEUDO = :conteudo
+            WHEN NOT MATCHED THEN
+                INSERT (COD_ATENDIMENTO, COD_CLIENTE, CLIENTE, DATA_ATENDIMENTO, RESPONSAVEL, STATUS, ARQUIVO_TXT, CONTEUDO)
+                VALUES (:codAtendimento, :codCliente, :cliente, SYSDATE, :responsavel, :status, :arquivo, :conteudo)
+        `;
+
+        await conn.execute(sql, dados);
+        await conn.commit();
+        console.log(`[DB SUCCESS] Atendimento ${dados.codAtendimento} processado.`);
+    } catch (err) {
+        console.error("Erro ao salvar no banco:", err);
+        throw err;
+    } finally {
+        if (conn) await conn.close();
+    }
+}
+async function buscarNoBanco(termo) {
+    let conn;
+    try {
+        conn = await getConnection();
+        conn.outFormat = oracledb.OUT_FORMAT_OBJECT;
+
+        const sql = `
+            SELECT 
+                COD_ATENDIMENTO AS "atendimento",
+                CLIENTE AS "cliente",
+                ARQUIVO_TXT AS "arquivo",
+                CONTEUDO AS "conteudo"
+            FROM DOCAI_ATENDIMENTOS
+            WHERE LOWER(CONTEUDO) LIKE :termo 
+               OR LOWER(CLIENTE) LIKE :termo
+            ORDER BY DATA_ATENDIMENTO DESC
+        `;
+
+        const result = await conn.execute(sql, { termo: `%${termo.toLowerCase()}%` });
+        return result.rows;
+    } catch (err) {
+        console.error("Erro na busca no banco:", err);
+        return [];
+    } finally {
+        if (conn) await conn.close();
+    }
+}
+
+module.exports = { salvarAtendimento, buscarNoBanco };
+
+
+--- INICIO ARQUIVO: clientes.js ---
+Caminho: C:\docAi\database\clientes.js
+---------------------------------------
+const oracledb = require("oracledb");
+const { getConnection } = require("./oracle");
+
+async function garantirCliente(codCliente, nome) {
+    const conn = await getConnection();
+    await conn.execute(
+        `MERGE INTO DOCAI_CLIENTES C
+         USING (SELECT :cod AS COD_CLIENTE, :nome AS NOME_CLIENTE FROM dual) X
+         ON (C.COD_CLIENTE = X.COD_CLIENTE)
+         WHEN NOT MATCHED THEN
+         INSERT (COD_CLIENTE, NOME_CLIENTE) VALUES (X.COD_CLIENTE, X.NOME_CLIENTE)`,
+        { cod: codCliente, nome: nome }
+    );
+    await conn.commit();
+    await conn.close();
+}
+
+async function buscarClientes(termo) {
+    let conn;
+    try {
+        conn = await getConnection();
+        // ForÃ§a o formato de objeto no resultado
+        const result = await conn.execute(`
+            SELECT COD_CLIENTE AS "codigo", NOME_CLIENTE AS "nome"
+            FROM DOCAI_CLIENTES
+            WHERE :termo IS NULL 
+               OR TO_CHAR(COD_CLIENTE) = :termo
+               OR UPPER(NOME_CLIENTE) LIKE '%' || UPPER(:termo) || '%'
+            ORDER BY NOME_CLIENTE
+        `, { termo: termo || null }, { outFormat: oracledb.OUT_FORMAT_OBJECT });
+
+        console.log(`[DB LOG] Resultados para "${termo}": ${result.rows.length}`);
+        if (result.rows.length > 0) {
+            console.log(`[DB LOG] Primeiro item (bruto):`, JSON.stringify(result.rows[0]));
+        }
+        return result.rows;
+    } catch (err) {
+        console.error("[DB ERROR]", err);
+        throw err;
+    } finally {
+        if (conn) await conn.close();
+    }
+}
+
+module.exports = { garantirCliente, buscarClientes };
+
+
+--- INICIO ARQUIVO: oracle.js ---
+Caminho: C:\docAi\database\oracle.js
+---------------------------------------
+const oracledb = require("oracledb");
+require('dotenv').config(); // Carrega as variÃ¡veis do .env
+
+let pool;
+
+async function initializePool() {
+    if (!pool) {
+        pool = await oracledb.createPool({
+            user: process.env.DB_USER,
+            password: process.env.DB_PASSWORD,
+            connectString: process.env.DB_CONNECTION_STRING,
+            poolMin: 2,
+            poolMax: 10,
+            poolIncrement: 1
+        });
+        console.log("Pool de conexÃµes Oracle inicializado.");
+    }
+}
+
+async function getConnection() {
+    await initializePool();
+    return await pool.getConnection();
+}
+
+module.exports = { getConnection };
+
+
+--- INICIO ARQUIVO: app.js ---
+Caminho: C:\docAi\public\js\app.js
+---------------------------------------
+async function gerarRelatorio(){
+
+const cliente = document.getElementById("cliente").value
+const codCliente = document.getElementById("codCliente").value
+const codAtendimento = document.getElementById("codAtendimento").value
+const responsavel = document.getElementById("responsavel").value
+const problema = document.getElementById("problema").value
+const causa = document.getElementById("causa").value
+const solucao = document.getElementById("solucao").value
+const status = document.getElementById("status").value
+
+const data = new Date().toLocaleString("pt-BR")
+
+const relatorio = `
+========================================
+RELATORIO DE ATENDIMENTO
+========================================
+CLIENTE: ${cliente}
+COD CLIENTE: ${codCliente}
+COD ATENDIMENTO: ${codAtendimento}
+DATA: ${data}
+RESPONSAVEL: ${responsavel}
+----------------------------------------
+PROBLEMA:
+${problema}
+----------------------------------------
+CAUSA RAIZ:
+${causa}
+----------------------------------------
+SOLUCAO:
+${solucao}
+----------------------------------------
+STATUS: ${status}
+========================================
+`
+
+await fetch("/salvar",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+
+cliente,
+codCliente,
+codAtendimento,
+responsavel,
+status,
+relatorio
+
+})
+
+})
+
+alert("Atendimento salvo!")
+
+}
+async function buscarCliente(){
+
+const termo = document.getElementById("buscaCliente").value
+
+const resposta = await fetch(`/buscar?termo=${encodeURIComponent(termo)}`)
+
+const dados = await resposta.json()
+
+const div = document.getElementById("resultadoCliente")
+
+div.innerHTML = ""
+
+dados.forEach(item => {
+
+div.innerHTML += `
+<div class="card mb-2">
+<div class="card-body">
+
+<strong>${item.cliente}</strong>
+
+<button class="btn btn-sm btn-success float-end" onclick="selecionarCliente('${item.cliente}')">
+Selecionar
+</button>
+
+</div>
+</div>
+`
+
+})
+
+}
+function abrirBuscaCliente(){
+
+window.open(
+"/buscar_cliente.html",
+"buscarCliente",
+"width=600,height=500"
+)
+
+}
+async function autocompleteCliente() {
+    const termoDigitado = document.getElementById("cliente").value;
+    let termo = termoDigitado;
+    if(termoDigitado === "" || termoDigitado === "%") termo = "%";
+
+    const resposta = await fetch(`/buscar_cliente?termo=${encodeURIComponent(termo)}`);
+    const clientes = await resposta.json();
+
+    const div = document.getElementById("listaClientes");
+    div.innerHTML = "";
+
+    clientes.forEach(c => {
+        div.innerHTML += `
+            <button class="list-group-item list-group-item-action"
+                onclick="selecionarCliente('${c.codigo}','${c.nome}')">
+                ${c.nome} (${c.codigo})
+            </button>
+        `;
+    });
+}
+
+function selecionarCliente(codigo, nome){
+    document.getElementById("codCliente").value = codigo;
+    document.getElementById("cliente").value = nome;
+    document.getElementById("listaClientes").innerHTML = "";
+}
+// public/js/app.js
+
+async function buscar() {
+    const termo = document.getElementById("termoBusca").value;
+    const div = document.getElementById("resultado");
+    
+    if (!termo) {
+        div.innerHTML = '<div class="alert alert-warning">Digite algo para buscar.</div>';
+        return;
+    }
+
+    console.log(`[JS] Iniciando busca por: ${termo}`);
+
+    try {
+        const resposta = await fetch(`/buscar?termo=${encodeURIComponent(termo)}`);
+        const dados = await resposta.json();
+
+        console.log("[JS] Dados recebidos do servidor:", dados);
+
+        div.innerHTML = ""; // Limpa a tela de resultados
+
+        if (dados.length === 0) {
+            div.innerHTML = '<div class="alert alert-info">Nenhum atendimento encontrado.</div>';
+            return;
+        }
+
+        dados.forEach(item => {
+            // Mapeamento flexÃ­vel: aceita nomes vindos do JSON (minÃºsculos) ou Oracle (MAIÃšSCULOS)
+            const nAtendimento = item.atendimento || item.COD_ATENDIMENTO || "N/A";
+            const nomeCliente = item.cliente || item.CLIENTE || "Desconhecido";
+            const resumo = item.conteudo || item.CONTEUDO || "";
+            const caminhoArq = item.arquivo || item.ARQUIVO_TXT || "";
+
+            const cartao = `
+                <div class="card mb-3 shadow-sm border-start border-primary border-4">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <h5 class="card-title text-primary">Atendimento: ${nAtendimento}</h5>
+                            <span class="badge bg-secondary">${nomeCliente}</span>
+                        </div>
+                        <p class="card-text mt-2" style="font-size: 0.9rem; color: #555;">
+                            ${resumo.substring(0, 200)}...
+                        </p>
+                        <a href="/abrir?caminho=${encodeURIComponent(caminhoArq)}" target="_blank" class="btn btn-sm btn-outline-primary">
+                            Ver RelatÃ³rio Completo
+                        </a>
+                    </div>
+                </div>
+            `;
+            div.innerHTML += cartao;
+        });
+
+    } catch (error) {
+        console.error("[JS] Erro ao processar busca:", error);
+        div.innerHTML = '<div class="alert alert-danger">Erro ao carregar resultados na tela.</div>';
+    }
+}
+
+
+--- INICIO ARQUIVO: novo.js ---
+Caminho: C:\docAi\public\js\novo.js
+---------------------------------------
+// C:\docAi\public\js\novo.js
+
+document.addEventListener("DOMContentLoaded", () => {
+    const codInput = document.getElementById("codCliente");
+    if (codInput) {
+        codInput.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                console.log("[JS] Buscando por Enter...");
+                verificarCliente();
+            }
+        });
+    }
+});
+
+async function verificarCliente() {
+    const codInput = document.getElementById("codCliente");
+    const nomeInput = document.getElementById("clienteNovo");
+    const cod = codInput.value.trim();
+
+    if (!cod) return;
+
+    try {
+        const resposta = await fetch(`/buscar_cliente?termo=${encodeURIComponent(cod)}`);
+        const clientes = await resposta.json();
+        
+        console.log("[JS] Dados recebidos:", clientes);
+
+        // BUSCA BLINDADA: Aceita Objeto {codigo, nome} ou Array [codigo, nome]
+        const clienteEncontrado = clientes.find(c => {
+            const cCodigo = c.codigo || c.CODIGO || (Array.isArray(c) ? c[0] : null);
+            return cCodigo == cod;
+        });
+
+        if (clienteEncontrado) {
+            const nomeFinal = clienteEncontrado.nome || clienteEncontrado.NOME || (Array.isArray(clienteEncontrado) ? clienteEncontrado[1] : "");
+            
+            console.log("[JS] Cliente Identificado:", nomeFinal);
+            nomeInput.value = nomeFinal;
+            nomeInput.readOnly = true;
+            document.getElementById("codAtendimento").focus();
+        } else {
+            console.warn("[JS] Nenhum match para o cÃ³digo:", cod);
+            nomeInput.value = "";
+            nomeInput.readOnly = false;
+            nomeInput.placeholder = "Cliente novo! Digite o nome.";
+        }
+    } catch (e) {
+        console.error("[JS] Erro na requisiÃ§Ã£o:", e);
+    }
+}
+
+async function gerarRelatorio() {
+    const dados = {
+        cliente: document.getElementById("clienteNovo").value,
+        codCliente: document.getElementById("codCliente").value,
+        codAtendimento: document.getElementById("codAtendimento").value,
+        responsavel: document.getElementById("responsavel").value,
+        problema: document.getElementById("problema").value,
+        causa: document.getElementById("causa").value,
+        solucao: document.getElementById("solucao").value,
+        status: document.getElementById("status").value
+    };
+
+    if (!dados.codCliente || !dados.cliente || !dados.codAtendimento) {
+        return alert("Por favor, preencha o cÃ³digo do cliente e do atendimento.");
+    }
+
+    const relatorio = `RELATÃ“RIO: ${dados.cliente}\nCOD: ${dados.codCliente}\nPROBLEMA: ${dados.problema}`;
+
+    try {
+        const resp = await fetch("/salvar", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ ...dados, relatorio })
+        });
+        const res = await resp.json();
+        if (res.status === "ok") {
+            alert("Atendimento salvo com sucesso!");
+            window.location.href = "index.html";
+        }
+    } catch (e) { alert("Erro de conexÃ£o"); }
+}
+
+
+--- INICIO ARQUIVO: index.js ---
+Caminho: C:\docAi\storage\index.js
+---------------------------------------
+const fs = require("fs")
+
+function atualizarIndex(cliente,codAtendimento,arquivo,conteudo){
+
+const indexPath = "index.json"
+
+let index = []
+
+if(fs.existsSync(indexPath)){
+index = JSON.parse(fs.readFileSync(indexPath,"utf8"))
+}
+
+index.push({
+
+cliente: cliente,
+atendimento: codAtendimento,
+arquivo: arquivo.split("/").pop(),
+caminho: arquivo,
+conteudo: conteudo.toLowerCase()
+
+})
+
+fs.writeFileSync(indexPath,JSON.stringify(index,null,2))
+
+}
+
+module.exports = { atualizarIndex }
+
+
+--- INICIO ARQUIVO: salvarTXT.js ---
+Caminho: C:\docAi\storage\salvarTXT.js
+---------------------------------------
+const fs = require("fs")
+
+function salvarTXT(cliente,codAtendimento,relatorio){
+
+const agora = new Date()
+
+const ano = agora.getFullYear()
+const mes = String(agora.getMonth()+1).padStart(2,"0")
+const dia = String(agora.getDate()).padStart(2,"0")
+
+const dataArquivo = `${ano}${mes}${dia}`
+
+const nomeCliente = cliente.replace(/\s+/g,"_")
+
+const nomeArquivo = `${nomeCliente}_ATD${codAtendimento}_${dataArquivo}.txt`
+
+const pasta = `docs/${ano}/${mes}`
+
+if(!fs.existsSync(pasta)){
+fs.mkdirSync(pasta,{recursive:true})
+}
+
+if(fs.existsSync(pasta)){
+
+const arquivos = fs.readdirSync(pasta)
+
+const existe = arquivos.some(arq => arq.includes(`ATD${codAtendimento}`))
+
+if(existe){
+
+return {
+erro:true,
+mensagem:"CÃ³digo de atendimento jÃ¡ existe neste mÃªs"
+}
+
+}
+
+}
+
+const caminho = `${pasta}/${nomeArquivo}`
+
+fs.writeFileSync(caminho,relatorio)
+// atualizar index
+
+const indexPath = "index.json"
+
+let index = []
+
+if(fs.existsSync(indexPath)){
+index = JSON.parse(fs.readFileSync(indexPath,"utf8"))
+}
+
+index.push({
+
+cliente: cliente,
+atendimento: codAtendimento,
+arquivo: nomeArquivo,
+caminho: caminho,
+data: dataArquivo,
+conteudo: relatorio.toLowerCase()
+
+})
+
+fs.writeFileSync(indexPath,JSON.stringify(index,null,2))
+
+return {
+erro:false,
+arquivo:caminho
+}
+
+}
+
+module.exports = salvarTXT
+
+
+--- INICIO ARQUIVO: .env ---
+Caminho: C:\docAi\.env
+---------------------------------------
+DB_USER=admin
+DB_PASSWORD=manager
+DB_CONNECTION_STRING=localhost/orcl
+PORT=3033
+
+
+--- INICIO ARQUIVO: server.js ---
+Caminho: C:\docAi\server.js
+---------------------------------------
+require('dotenv').config();
+const express = require("express");
+const path = require("path");
+const fs = require("fs");
+const salvarTXT = require("./storage/salvarTXT");
+const atendimentosDB = require("./database/atendimentos");
+const clientesDB = require("./database/clientes");
+const indexador = require("./storage/index");
+
+const app = express();
+app.use(express.json());
+app.use(express.static(path.join(__dirname, "public")));
+
+const PORT = process.env.PORT || 3033;
+
+// ... (mantenha os requires iguais)
+
+app.get("/buscar", async (req, res) => {
+    const termo = req.query.termo?.toLowerCase() || "";
+    let resultados = [];
+
+    console.log(`\n[SEARCH LOG] Nova busca iniciada: "${termo}"`);
+
+    // 1. TENTA NO INDEX.JSON (Busca Local)
+    if (fs.existsSync("index.json")) {
+        try {
+            const index = JSON.parse(fs.readFileSync("index.json", "utf8"));
+            resultados = index.filter(item => item.conteudo.toLowerCase().includes(termo));
+            
+            if (resultados.length > 0) {
+                console.log(`[SEARCH LOG] Foram encontrados ${resultados.length} itens no INDEX.JSON`);
+            }
+        } catch (e) {
+            console.error("[SEARCH LOG] Erro ao ler index.json");
+        }
+    }
+
+    // 2. SE NÃƒO ACHOU NO JSON, VAI NO ORACLE (Busca no Banco)
+    if (resultados.length === 0 && termo.length > 0) {
+        console.log(`[SEARCH LOG] Nada encontrado no JSON. Consultando Banco Oracle...`);
+        try {
+            resultados = await atendimentosDB.buscarNoBanco(termo);
+        } catch (err) {
+            console.error("[SEARCH LOG] Falha na busca hÃ­brida");
+            return res.status(500).json({ erro: "Erro na busca" });
+        }
+    }
+
+    console.log(`[SEARCH LOG] Retornando ${resultados.length} resultados totais.\n`);
+    res.json(resultados);
+});
+
+// ... (restante do server.js)
+app.post("/salvar", async (req, res) => {
+    const { cliente, codCliente, codAtendimento, responsavel, status, relatorio } = req.body;
+    try {
+        await clientesDB.garantirCliente(codCliente, cliente);
+        const resultado = salvarTXT(cliente, codAtendimento, relatorio);
+        
+        await atendimentosDB.salvarAtendimento({
+            codAtendimento, codCliente, cliente, responsavel, status,
+            arquivo: resultado.arquivo, conteudo: relatorio
+        });
+
+        indexador.atualizarIndex(cliente, codAtendimento, resultado.arquivo, relatorio);
+        res.json({ status: "ok", arquivo: resultado.arquivo });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ status: "erro", mensagem: "Erro ao salvar atendimento" });
+    }
+});
+
+app.get("/buscar", async (req, res) => {
+    const termo = req.query.termo?.toLowerCase() || "";
+    let resultados = [];
+    if (fs.existsSync("index.json")) {
+        try {
+            const index = JSON.parse(fs.readFileSync("index.json", "utf8"));
+            resultados = index.filter(item => item.conteudo.toLowerCase().includes(termo));
+        } catch (e) { console.error("Erro Ã­ndice"); }
+    }
+    if (resultados.length === 0 && termo.length > 0) {
+        try {
+            resultados = await atendimentosDB.buscarNoBanco(termo);
+        } catch (err) { res.status(500).json({ erro: "Erro Oracle" }); }
+    }
+    res.json(resultados);
+});
+
+app.post("/analisar", async (req, res) => {
+    const { codAtendimento } = req.body;
+    const texto = await atendimentosDB.obterConteudoParaIA(codAtendimento);
+    res.json({ status: "ok", conteudo: texto });
+});
+
+app.listen(PORT, () => console.log(`DocAI rodando em http://localhost:${PORT}`));
