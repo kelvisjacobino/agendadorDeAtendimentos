@@ -1,4 +1,4 @@
-// ========================== NOVO.JS FINAL COM AUTO-CADASTRO E FUNÇÃO GLOBAL ==========================
+// ========================== NOVO.JS FINAL INTEGRADO DOC AI (RELATÓRIOS SEM 404) ==========================
 
 // Expor funções globalmente para HTML
 window.verificarCliente = verificarCliente;
@@ -82,22 +82,25 @@ async function gerarRelatorio() {
         return alert("Por favor, preencha o código do cliente e do atendimento.");
     }
 
-    const relatorio = `RELATÓRIO: ${dados.cliente}\nCOD: ${dados.codCliente}\nPROBLEMA: ${dados.problema}`;
-    console.log(`[JS LOG] Gerando relatório para atendimento ${dados.codAtendimento}`);
-
     try {
         const resp = await fetch("/salvar", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ ...dados, relatorio })
+            body: JSON.stringify(dados)
         });
         const res = await resp.json();
+
         if (res.status === "ok") {
-            console.log(`[JS LOG] Atendimento ${dados.codAtendimento} salvo com sucesso em: ${res.arquivo}`);
-            alert("Atendimento salvo com sucesso!");
-            window.location.href = "index.html";
+            console.log(`[JS LOG] Atendimento ${dados.codAtendimento} salvo com sucesso.`);
+
+            // Use sempre o caminho relativo do arquivo para evitar 404
+            const caminhoRelatorio = (res.arquivo).replace(/\\/g, '/');
+            console.log(`[JS LOG] Caminho do relatório (relativo): ${caminhoRelatorio}`);
+
+            // Abrir o relatório em uma aba usando caminho relativo
+            window.open(`/abrir?caminho=${encodeURIComponent(caminhoRelatorio)}`, '_blank');
         } else {
-            console.error(`[JS ERROR] Falha ao salvar atendimento:`, res);
+            console.error("[JS ERROR] Falha ao salvar atendimento:", res);
             alert("Erro ao salvar atendimento.");
         }
     } catch (e) {
