@@ -1,4 +1,9 @@
-// ========================== NOVO.JS FINAL ==========================
+// ========================== NOVO.JS FINAL COM AUTO-CADASTRO E FUNÇÃO GLOBAL ==========================
+
+// Expor funções globalmente para HTML
+window.verificarCliente = verificarCliente;
+window.gerarRelatorio = gerarRelatorio;
+
 document.addEventListener("DOMContentLoaded", () => {
     const codInput = document.getElementById("codCliente");
     if (codInput) {
@@ -25,7 +30,24 @@ async function verificarCliente() {
         const clientes = await resposta.json();
         console.log("[JS LOG] Dados recebidos do /buscar_cliente:", clientes);
 
-        const clienteEncontrado = clientes.find(c => String(c.codigo) === String(cod));
+        let clienteEncontrado = clientes.find(c => String(c.codigo) === String(cod));
+
+        if (!clienteEncontrado && nomeInput.value.trim() !== "") {
+            const nomeNovo = nomeInput.value.trim();
+            console.log(`[JS LOG] Cliente não encontrado, criando novo: ${cod} - ${nomeNovo}`);
+            const criarResp = await fetch("/salvar_cliente", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ codCliente: cod, nome: nomeNovo })
+            });
+            const resCriar = await criarResp.json();
+            if (resCriar.status === "ok") {
+                console.log(`[JS LOG] Cliente ${cod} - ${nomeNovo} criado com sucesso.`);
+                clienteEncontrado = { codigo: cod, nome: nomeNovo };
+            } else {
+                console.error(`[JS ERROR] Falha ao criar cliente:`, resCriar);
+            }
+        }
 
         if (clienteEncontrado) {
             console.log("[JS LOG] Cliente identificado:", clienteEncontrado.nome);
@@ -33,7 +55,7 @@ async function verificarCliente() {
             nomeInput.readOnly = true;
             document.getElementById("codAtendimento").focus();
         } else {
-            console.warn("[JS WARN] Nenhum cliente encontrado para o código:", cod);
+            console.warn("[JS WARN] Nenhum cliente encontrado e nenhum nome fornecido para criação.");
             nomeInput.value = "";
             nomeInput.readOnly = false;
             nomeInput.placeholder = "Cliente novo! Digite o nome.";
