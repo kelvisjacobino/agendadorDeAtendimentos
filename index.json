@@ -289,5 +289,102 @@
     "caminho": "docs\\2026\\03\\kelvis_ATD1234156465_20260309.txt",
     "data": "20260309",
     "conteudo": "tesasdf"
+  },
+  {
+    "cliente": "asdfa",
+    "atendimento": "1231321",
+    "arquivo": "asdfa_ATD1231321_20260309.txt",
+    "caminho": "docs\\2026\\03\\asdfa_ATD1231321_20260309.txt",
+    "data": "20260309",
+    "conteudo": "asdfasd"
+  },
+  {
+    "cliente": "kelvis",
+    "atendimento": "2503",
+    "arquivo": "kelvis_ATD2503_20260309.txt",
+    "caminho": "docs\\2026\\03\\kelvis_ATD2503_20260309.txt",
+    "data": "20260309",
+    "conteudo": "erro de emissao de nota"
+  },
+  {
+    "cliente": "kelvis",
+    "atendimento": "223314",
+    "problema": "ASDFA",
+    "causa": "ASDFASD",
+    "solucao": "ASDFAS",
+    "arquivo": "docs\\2026\\03\\kelvis_ATD223314_20260309.txt",
+    "conteudo": "asdfa asdfasd asdfas"
+  },
+  {
+    "cliente": "teste",
+    "atendimento": "252510",
+    "problema": "emissao de nota",
+    "causa": "erro do cliente",
+    "solucao": "ajustado nota",
+    "arquivo": "docs\\2026\\03\\teste_ATD252510_20260311.txt",
+    "conteudo": "emissao de nota erro do cliente ajustado nota"
+  },
+  {
+    "cliente": "kelvis",
+    "atendimento": "223316",
+    "problema": "erro de oracle",
+    "causa": "banco desativado",
+    "solucao": "ativado banco",
+    "arquivo": "docs\\2026\\03\\kelvis_ATD223316_20260311.txt",
+    "conteudo": "erro de oracle banco desativado ativado banco"
+  },
+  {
+    "cliente": "kelvis",
+    "atendimento": "2525113",
+    "problema": "ERRO NA VALIDAÇÃO DE NOTA FISCAL",
+    "causa": "ICMS ST ERRADO",
+    "solucao": "AJUSTADO ICMS NA TABELA TRIBUTOS_MOVIMENTOS",
+    "arquivo": "docs\\2026\\03\\kelvis_ATD2525113_20260311.txt",
+    "conteudo": "erro na validação de nota fiscal icms st errado ajustado icms na tabela tributos_movimentos"
+  },
+  {
+    "cliente": "kelvis",
+    "atendimento": "2222222",
+    "problema": "SISTEMA NAO INICIA",
+    "causa": "BANCO DE DADOS OFF-LINE",
+    "solucao": "INICIADO VIA PUTTY",
+    "arquivo": "docs\\2026\\03\\kelvis_ATD2222222_20260311.txt",
+    "conteudo": "sistema nao inicia banco de dados off-line iniciado via putty"
+  },
+  {
+    "cliente": "kelvis",
+    "atendimento": "2525",
+    "problema": "ERRO AO EMITIR NFCE",
+    "causa": "EMISSOR FISCAL ESTAVA FECHADO",
+    "solucao": "INICIADO O EMISSOR FISCAL NO SERVIDOR",
+    "arquivo": "docs\\2026\\03\\kelvis_ATD2525_20260311.txt",
+    "conteudo": "erro ao emitir nfce emissor fiscal estava fechado iniciado o emissor fiscal no servidor"
+  },
+  {
+    "cliente": "teste",
+    "atendimento": "2233",
+    "problema": "SISTEMA NAO INICIA",
+    "causa": "EMISSOR FISCAL ESTAVA FECHADO",
+    "solucao": "NAO SEI",
+    "arquivo": "docs\\2026\\03\\teste_ATD2233_20260311.txt",
+    "conteudo": "sistema nao inicia emissor fiscal estava fechado nao sei"
+  },
+  {
+    "cliente": "kelvis",
+    "atendimento": "13654",
+    "problema": "Bom dia\npreciso cancelar uma nota fiscal de recusa, não estou conseguindo.\nconsegue me ajudar por gentileza? e urgente",
+    "causa": "Nota fiscal passou do prazo de cancelamento",
+    "solucao": "Nota fiscal passou do prazo de cancelamento, orientado cliente como realizar devolução de venda no sistema.",
+    "arquivo": "docs\\2026\\03\\kelvis_ATD13654_20260312.txt",
+    "conteudo": "bom dia\npreciso cancelar uma nota fiscal de recusa, não estou conseguindo.\nconsegue me ajudar por gentileza? e urgente nota fiscal passou do prazo de cancelamento nota fiscal passou do prazo de cancelamento, orientado cliente como realizar devolução de venda no sistema."
+  },
+  {
+    "cliente": "teste 4348",
+    "atendimento": "676875",
+    "problema": "teste p",
+    "causa": "teste c",
+    "solucao": "teste s",
+    "arquivo": "docs\\2026\\03\\teste_4348_ATD676875_20260312.txt",
+    "conteudo": "teste p teste c teste s"
   }
 ]

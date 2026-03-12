@@ -1,86 +1,157 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Novo Atendimento - DocAI</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .list-group-item-action { cursor: pointer; }
-        #listaClientesNovo { z-index: 1000; }
-        .bg-custom { background-color: #f8f9fa; }
-    </style>
+<meta charset="UTF-8">
+<title>DocAI - Novo Atendimento</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+body{
+background:#f4f6f9;
+font-family:Segoe UI,Arial;
+}
+
+.top-bar{
+background:#1f2d3d;
+color:white;
+padding:12px 20px;
+font-size:18px;
+font-weight:600;
+}
+
+.container-card{
+max-width:900px;
+margin:auto;
+margin-top:30px;
+}
+
+.card{
+border:none;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.08);
+}
+
+.section-title{
+font-size:14px;
+font-weight:600;
+color:#6c757d;
+margin-top:15px;
+}
+
+textarea{
+resize:none;
+}
+
+.btn-primary{
+background:#0069d9;
+border:none;
+}
+
+.btn-primary:hover{
+background:#0056b3;
+}
+
+</style>
+
 </head>
 
-<body class="bg-custom">
-    <div class="container mt-5 shadow-sm p-4 bg-white rounded">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <h2 class="text-primary">Novo Atendimento</h2>
-            <a href="index.html" class="btn btn-outline-secondary">Voltar ao Início</a>
-        </div>
-        <hr>
+<body>
 
-        <h5 class="mb-3 text-secondary">Dados do Cliente</h5>
-        <div class="row">
-            <div class="col-md-4 mb-3">
-                <label class="form-label fw-bold">Código Cliente</label>
-                <input type="number" id="codCliente" class="form-control" placeholder="Ex: 105" onblur="verificarCliente()">
-                <div id="feedbackCliente" class="form-text">Digite o código para validar.</div>
-            </div>
+<div class="top-bar">
+DocAI • Registro de Atendimento
+</div>
 
-            <div class="col-md-8 mb-3 position-relative">
-                <label class="form-label fw-bold">Nome Cliente</label>
-                <input id="clienteNovo" class="form-control" placeholder="Nome será preenchido ou digitado" oninput="autocompleteClienteNovo()">
-                <div id="listaClientesNovo" class="list-group position-absolute w-100 shadow-sm"></div>
-            </div>
-        </div>
+<div class="container container-card">
 
-        <hr>
+<div class="card">
+<div class="card-body">
 
-        <h5 class="mb-3 text-secondary">Detalhes do Atendimento</h5>
-        <div class="row">
-            <div class="col-md-4 mb-3">
-                <label class="form-label fw-bold">Nº Atendimento (ERP)</label>
-                <input type="number" id="codAtendimento" class="form-control" placeholder="Ex: 55420">
-            </div>
-            <div class="col-md-4 mb-3">
-                <label class="form-label fw-bold">Responsável</label>
-                <input id="responsavel" class="form-control" value="Kelvis">
-            </div>
-            <div class="col-md-4 mb-3">
-                <label class="form-label fw-bold">Status</label>
-                <select id="status" class="form-control">
-                    <option value="FINALIZADO">FINALIZADO</option>
-                    <option value="PENDENTE">PENDENTE</option>
-                </select>
-            </div>
-        </div>
+<div class="d-flex justify-content-between mb-4">
 
-        <hr>
+<h4>Novo Atendimento</h4>
 
-        <h5 class="mb-3 text-secondary">Relato Técnico</h5>
-        <div class="mb-3">
-            <label class="form-label fw-bold">Problema Relatado</label>
-            <textarea id="problema" class="form-control" rows="3" placeholder="O que o cliente reportou?"></textarea>
-        </div>
-        <div class="mb-3">
-            <label class="form-label fw-bold">Causa Raiz</label>
-            <textarea id="causa" class="form-control" rows="3" placeholder="Qual a origem da falha?"></textarea>
-        </div>
-        <div class="mb-3">
-            <label class="form-label fw-bold">Solução Aplicada</label>
-            <textarea id="solucao" class="form-control" rows="3" placeholder="Passo a passo da resolução."></textarea>
-        </div>
+<button class="btn btn-outline-secondary btn-sm" onclick="history.back()">
+⬅ Voltar
+</button>
 
-        <div class="mt-4">
-            <button class="btn btn-success btn-lg w-100" onclick="gerarRelatorio()">
-                Gravar no Banco e Gerar Documento
-            </button>
-        </div>
-    </div>
+</div>
 
-    <script src="js/novo.js"></script>
+<!-- CLIENTE -->
+
+<div class="row g-3">
+
+<div class="col-md-3">
+<label class="form-label">Código Cliente</label>
+<input id="codCliente" class="form-control">
+</div>
+
+<div class="col-md-9">
+<label class="form-label">Cliente</label>
+<input id="clienteNovo" class="form-control">
+</div>
+
+<div class="col-md-4">
+<label class="form-label">Código Atendimento</label>
+<input id="codAtendimento" class="form-control">
+</div>
+
+<div class="col-md-4">
+<label class="form-label">Responsável</label>
+<input id="responsavel" class="form-control">
+</div>
+
+<div class="col-md-4">
+<label class="form-label">Status</label>
+<select id="status" class="form-select">
+<option>Resolvido</option>
+<option>Em análise</option>
+<option>Pendente</option>
+</select>
+</div>
+
+</div>
+
+<hr>
+
+<div class="section-title">Problema</div>
+
+<textarea id="problema" class="form-control" rows="3"></textarea>
+<div id="sugestaoIA" class="alert alert-info mt-2" style="display:none">
+💡 Sugestão de solução baseada em atendimentos anteriores:
+<div id="textoSugestao"></div>
+<div id="sugestaoIA" style="display:none">
+<div id="textoSugestao"></div>
+</div>
+<button class="btn btn-sm btn-success mt-2" onclick="usarSugestao()">
+Usar esta solução
+</button>
+</div>
+
+<div class="section-title">Causa</div>
+
+<textarea id="causa" class="form-control" rows="3"></textarea>
+
+<div class="section-title">Solução</div>
+
+<textarea id="solucao" class="form-control" rows="3"></textarea>
+
+<div class="d-flex justify-content-end mt-4">
+
+<button class="btn btn-primary px-4" onclick="gerarRelatorio()">
+Salvar Atendimento
+</button>
+
+</div>
+
+</div>
+</div>
+
+</div>
+
+<script src="novo.js"></script>
+
 </body>
-
 </html>

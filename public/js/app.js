@@ -1,17 +1,73 @@
+// ===============================
+// DOC AI - APP.JS OTIMIZADO
+// ===============================
+
+// ======================================
+// EVENTOS AO CARREGAR A PÁGINA
+// ======================================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    console.log("[JS INIT] App carregado.");
+
+    const campoBusca = document.getElementById("termoBusca");
+
+    if (campoBusca) {
+
+        campoBusca.addEventListener("keypress", function(e){
+
+            if(e.key === "Enter"){
+                e.preventDefault();
+                console.log("[JS] Enter pressionado → iniciando busca");
+                buscar();
+            }
+
+        });
+
+    }
+
+    const inputIA = document.getElementById("perguntaIA")
+
+if(inputIA){
+
+inputIA.addEventListener("keypress", function(e){
+
+if(e.key === "Enter"){
+
+e.preventDefault()
+
+perguntarIA()
+
+}
+
+})
+
+}
+
+
+});
+
+
+// ======================================
+// GERAR RELATÓRIO
+// ======================================
+
 async function gerarRelatorio(){
 
-const cliente = document.getElementById("cliente").value
-const codCliente = document.getElementById("codCliente").value
-const codAtendimento = document.getElementById("codAtendimento").value
-const responsavel = document.getElementById("responsavel").value
-const problema = document.getElementById("problema").value
-const causa = document.getElementById("causa").value
-const solucao = document.getElementById("solucao").value
-const status = document.getElementById("status").value
+    console.log("[JS] Gerando relatório...");
 
-const data = new Date().toLocaleString("pt-BR")
+    const cliente = document.getElementById("cliente").value
+    const codCliente = document.getElementById("codCliente").value
+    const codAtendimento = document.getElementById("codAtendimento").value
+    const responsavel = document.getElementById("responsavel").value
+    const problema = document.getElementById("problema").value
+    const causa = document.getElementById("causa").value
+    const solucao = document.getElementById("solucao").value
+    const status = document.getElementById("status").value
 
-const relatorio = `
+    const data = new Date().toLocaleString("pt-BR")
+
+    const relatorio = `
 ========================================
 RELATORIO DE ATENDIMENTO
 ========================================
@@ -34,150 +90,356 @@ STATUS: ${status}
 ========================================
 `
 
-await fetch("/salvar",{
+    try{
 
-method:"POST",
+        const resposta = await fetch("/salvar",{
 
-headers:{
-"Content-Type":"application/json"
-},
+            method:"POST",
 
-body:JSON.stringify({
+            headers:{
+                "Content-Type":"application/json"
+            },
 
-cliente,
-codCliente,
-codAtendimento,
-responsavel,
-status,
-relatorio
+            body:JSON.stringify({
 
-})
+                cliente,
+                codCliente,
+                codAtendimento,
+                responsavel,
+                status,
+                relatorio
 
-})
+            })
 
-alert("Atendimento salvo!")
+        })
+
+        console.log("[JS] Atendimento enviado para o servidor.");
+
+        alert("Atendimento salvo!")
+
+    }catch(err){
+
+        console.error("[JS ERROR] Falha ao salvar atendimento:", err);
+
+    }
 
 }
+
+
+// ======================================
+// BUSCA DE CLIENTES
+// ======================================
+
 async function buscarCliente(){
 
-const termo = document.getElementById("buscaCliente").value
+    const termo = document.getElementById("buscaCliente").value
 
-const resposta = await fetch(`/buscar?termo=${encodeURIComponent(termo)}`)
+    console.log("[JS] Buscando cliente:", termo)
 
-const dados = await resposta.json()
+    const resposta = await fetch(`/buscar?termo=${encodeURIComponent(termo)}`)
 
-const div = document.getElementById("resultadoCliente")
+    const dados = await resposta.json()
 
-div.innerHTML = ""
+    const div = document.getElementById("resultadoCliente")
 
-dados.forEach(item => {
+    div.innerHTML = ""
 
-div.innerHTML += `
-<div class="card mb-2">
-<div class="card-body">
+    dados.forEach(item => {
 
-<strong>${item.cliente}</strong>
+        div.innerHTML += `
+        <div class="card mb-2">
+        <div class="card-body">
 
-<button class="btn btn-sm btn-success float-end" onclick="selecionarCliente('${item.cliente}')">
-Selecionar
-</button>
+        <strong>${item.cliente}</strong>
 
+        <button class="btn btn-sm btn-success float-end" onclick="selecionarCliente('${item.cliente}')">
+        Selecionar
+        </button>
+
+        </div>
+        </div>
+        `
+
+    })
+
+}
+
+
+// ======================================
+// AUTOCOMPLETE CLIENTE
+// ======================================
+
+async function autocompleteCliente(){
+
+    const termoDigitado = document.getElementById("cliente").value
+
+    let termo = termoDigitado
+
+    if(termoDigitado === "" || termoDigitado === "%") termo = "%"
+
+    console.log("[JS] Autocomplete cliente:", termo)
+
+    const resposta = await fetch(`/buscar_cliente?termo=${encodeURIComponent(termo)}`)
+
+    const clientes = await resposta.json()
+
+    const div = document.getElementById("listaClientes")
+
+    div.innerHTML = ""
+
+    clientes.forEach(c => {
+
+        div.innerHTML += `
+            <button class="list-group-item list-group-item-action"
+                onclick="selecionarCliente('${c.codigo}','${c.nome}')">
+
+                ${c.nome} (${c.codigo})
+
+            </button>
+        `
+
+    })
+
+}
+
+
+function selecionarCliente(codigo,nome){
+
+    console.log("[JS] Cliente selecionado:", codigo, nome)
+
+    document.getElementById("codCliente").value = codigo
+    document.getElementById("cliente").value = nome
+    document.getElementById("listaClientes").innerHTML = ""
+
+}
+
+
+// ======================================
+// BUSCA INTELIGENTE DE ATENDIMENTOS
+// ======================================
+
+async function buscar() {
+
+    const termo = document.getElementById("termoBusca").value;
+    const div = document.getElementById("resultado");
+
+    if (!termo) {
+        div.innerHTML = '<div class="alert alert-warning">Digite algo para buscar.</div>';
+        return;
+    }
+
+    console.log("[JS] Iniciando busca por:", termo);
+
+    try {
+
+        // ==============================
+        // BUSCA LOCAL PRIMEIRO
+        // ==============================
+
+        const resposta = await fetch(`/buscar?termo=${encodeURIComponent(termo)}`);
+        const dados = await resposta.json();
+
+        console.log("[JS] Resultados recebidos:", dados.length);
+
+        div.innerHTML = "";
+
+        if (dados.length > 0) {
+
+            dados.forEach(item => {
+
+                const atendimento = item.atendimento || item.COD_ATENDIMENTO || "";
+                const cliente = item.cliente || item.CLIENTE || "";
+                const resumo = item.conteudo || item.CONTEUDO || "";
+                const arquivo = item.arquivo || item.ARQUIVO || "";
+
+                const card = `
+                <div class="card mb-3 shadow-sm border-start border-primary border-4">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <h5 class="card-title text-primary">Atendimento ${atendimento}</h5>
+                            <span class="badge bg-secondary">${cliente}</span>
+                        </div>
+
+                        <p class="card-text mt-2">
+                            ${resumo.substring(0,200)}...
+                        </p>
+
+                        <a href="/abrir?caminho=${encodeURIComponent(arquivo)}" 
+                           target="_blank" 
+                           class="btn btn-sm btn-outline-primary">
+
+                           Ver relatório
+                        </a>
+                    </div>
+                </div>
+                `;
+
+                div.innerHTML += card;
+
+            });
+
+            return;
+
+        }
+
+        // ==============================
+        // SE NÃO ENCONTROU LOCAL
+        // ==============================
+
+        console.log("[JS] Nenhum resultado local encontrado");
+
+        div.innerHTML = `
+        <div class="alert alert-warning">
+            Nenhum resultado encontrado localmente.
+            <br><br>
+            <button onclick="buscarIA('${termo}')" class="btn btn-primary">
+                Buscar com IA
+            </button>
+        </div>
+        `;
+
+    } catch (error) {
+
+        console.error("[JS ERROR]", error);
+
+        div.innerHTML = `
+        <div class="alert alert-danger">
+            Erro ao realizar busca.
+        </div>
+        `;
+
+    }
+
+}
+
+async function perguntarIA(){
+
+const pergunta = document.getElementById("perguntaIA").value
+const chat = document.getElementById("chatBox")
+
+if(!pergunta) return
+
+console.log("[JS] Pergunta enviada para IA:", pergunta)
+
+chat.innerHTML += `
+<div style="text-align:right;margin-bottom:10px">
+<b>Você:</b><br>
+${pergunta}
 </div>
+`
+
+document.getElementById("perguntaIA").value=""
+
+chat.innerHTML += `
+<div id="iaLoading" style="color:#999">
+IA pensando...
+</div>
+`
+
+chat.scrollTop = chat.scrollHeight
+
+try{
+
+const resp = await fetch(`/perguntar?pergunta=${encodeURIComponent(pergunta)}`)
+const dados = await resp.json()
+
+document.getElementById("iaLoading").remove()
+
+let resposta = ""
+
+if(!dados || dados.length === 0){
+
+resposta = "Nenhuma solução encontrada."
+
+}else{
+
+dados.forEach(r=>{
+
+resposta += `
+<div style="margin-bottom:10px">
+
+<b>Problema:</b> ${r.problema}<br>
+<b>Causa:</b> ${r.causa}<br>
+<b>Solução:</b> ${r.solucao}
+
 </div>
 `
 
 })
 
 }
-function abrirBuscaCliente(){
 
-window.open(
-"/buscar_cliente.html",
-"buscarCliente",
-"width=600,height=500"
-)
+chat.innerHTML += `
+<div style="text-align:left;margin-bottom:15px;color:#0d6efd">
+<b>DocAI:</b><br>
+${resposta}
+</div>
+`
+
+chat.scrollTop = chat.scrollHeight
+
+}catch(err){
+
+console.error("[JS ERROR]",err)
+
+chat.innerHTML += `
+<div style="color:red">Erro ao consultar IA</div>
+`
 
 }
-async function autocompleteCliente() {
-    const termoDigitado = document.getElementById("cliente").value;
-    let termo = termoDigitado;
-    if(termoDigitado === "" || termoDigitado === "%") termo = "%";
 
-    const resposta = await fetch(`/buscar_cliente?termo=${encodeURIComponent(termo)}`);
-    const clientes = await resposta.json();
-
-    const div = document.getElementById("listaClientes");
-    div.innerHTML = "";
-
-    clientes.forEach(c => {
-        div.innerHTML += `
-            <button class="list-group-item list-group-item-action"
-                onclick="selecionarCliente('${c.codigo}','${c.nome}')">
-                ${c.nome} (${c.codigo})
-            </button>
-        `;
-    });
 }
 
-function selecionarCliente(codigo, nome){
-    document.getElementById("codCliente").value = codigo;
-    document.getElementById("cliente").value = nome;
-    document.getElementById("listaClientes").innerHTML = "";
-}
-// public/js/app.js
 
-async function buscar() {
-    const termo = document.getElementById("termoBusca").value;
-    const div = document.getElementById("resultado");
-    
-    if (!termo) {
-        div.innerHTML = '<div class="alert alert-warning">Digite algo para buscar.</div>';
-        return;
-    }
 
-    console.log(`[JS] Iniciando busca por: ${termo}`);
+async function buscarGemini(termo){
 
-    try {
-        const resposta = await fetch(`/buscar?termo=${encodeURIComponent(termo)}`);
-        const dados = await resposta.json();
+    console.log("[JS] Iniciando busca SEMÂNTICA com Gemini:", termo)
 
-        console.log("[JS] Dados recebidos do servidor:", dados);
+    const div = document.getElementById("resultado")
 
-        div.innerHTML = ""; // Limpa a tela de resultados
+    div.innerHTML = `
+    <div class="alert alert-info">
+        Consultando IA... aguarde
+    </div>
+    `
 
-        if (dados.length === 0) {
-            div.innerHTML = '<div class="alert alert-info">Nenhum atendimento encontrado.</div>';
-            return;
+    try{
+
+        const resposta = await fetch(`/buscar_semantico?termo=${encodeURIComponent(termo)}`)
+
+        if(!resposta.ok){
+            throw new Error("Erro HTTP: " + resposta.status)
         }
 
-        dados.forEach(item => {
-            // Mapeamento flexível: aceita nomes vindos do JSON (minúsculos) ou Oracle (MAIÚSCULOS)
-            const nAtendimento = item.atendimento || item.COD_ATENDIMENTO || "N/A";
-            const nomeCliente = item.cliente || item.CLIENTE || "Desconhecido";
-            const resumo = item.conteudo || item.CONTEUDO || "";
-            const caminhoArq = item.arquivo || item.ARQUIVO_TXT || "";
+        const dados = await resposta.json()
 
-            const cartao = `
-                <div class="card mb-3 shadow-sm border-start border-primary border-4">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <h5 class="card-title text-primary">Atendimento: ${nAtendimento}</h5>
-                            <span class="badge bg-secondary">${nomeCliente}</span>
-                        </div>
-                        <p class="card-text mt-2" style="font-size: 0.9rem; color: #555;">
-                            ${resumo.substring(0, 200)}...
-                        </p>
-                        <a href="/abrir?caminho=${encodeURIComponent(caminhoArq)}" target="_blank" class="btn btn-sm btn-outline-primary">
-                            Ver Relatório Completo
-                        </a>
-                    </div>
-                </div>
-            `;
-            div.innerHTML += cartao;
-        });
+        console.log("[JS] Resposta Gemini:", dados)
 
-    } catch (error) {
-        console.error("[JS] Erro ao processar busca:", error);
-        div.innerHTML = '<div class="alert alert-danger">Erro ao carregar resultados na tela.</div>';
+        if(!Array.isArray(dados) || dados.length === 0){
+
+            div.innerHTML = `
+            <div class="alert alert-warning">
+                A IA não encontrou solução no histórico.
+            </div>
+            `
+
+            return
+        }
+
+        // usa a mesma função da busca local
+        mostrarResultados(dados)
+
+    }catch(err){
+
+        console.error("[JS ERROR] Gemini:", err)
+
+        div.innerHTML = `
+        <div class="alert alert-danger">
+            Erro ao consultar IA
+        </div>
+        `
+
     }
+
 }
