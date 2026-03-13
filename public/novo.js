@@ -286,7 +286,7 @@ async function gerarRelatorio() {
         cliente: document.getElementById("clienteNovo").value,
         codCliente: document.getElementById("codCliente").value,
         codAtendimento: document.getElementById("codAtendimento").value,
-        responsavel: document.getElementById("responsavel").value,
+        responsavel: localStorage.getItem("usuario_nome"),
         problema: document.getElementById("problema").value,
         causa: document.getElementById("causa").value,
         solucao: document.getElementById("solucao").value,

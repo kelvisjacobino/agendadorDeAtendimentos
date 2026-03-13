@@ -315,7 +315,16 @@ async function buscar() {
 async function perguntarIA(){
 
 const pergunta = document.getElementById("perguntaIA").value
+
 const chat = document.getElementById("chatBox")
+const usuario = localStorage.getItem("usuario_nome") || "desconhecido"
+
+console.log("[JS] Pergunta enviada para IA:", pergunta)
+console.log("[JS] Usuário logado:", usuario)
+
+const resposta = await fetch(`/chat_suporte?pergunta=${encodeURIComponent(pergunta)}&usuario=${encodeURIComponent(usuario)}`)
+
+const dados = await resposta.json()
 
 if(!pergunta) return
 

@@ -9,8 +9,22 @@ const { getConnection } = require('./database/oracle');
 const salvarTXT = require('./storage/salvarTXT');
 const { GoogleGenerativeAI } = require("@google/generative-ai")
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_KEY)
+const bcrypt = require("bcrypt")
+const jwt = require("jsonwebtoken")
+const { autenticar } = require("./auth/usuarios")
+const auth = require("./auth/authMiddleware");
+
 
 const app = express();
+
+app.use((req,res,next)=>{
+
+console.log(`🌐 ${req.method} ${req.url}`)
+
+next()
+
+})
+
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -549,9 +563,9 @@ res.json([])
 app.get('/chat_suporte', async (req,res)=>{
 
 const pergunta = req.query.pergunta
-
+const usuario = req.query.usuario
 console.log("[CHAT IA] Pergunta:", pergunta)
-
+console.log("[IA] Usuário:", usuario)
 try{
 
 const indexPath = path.join(__dirname,"index.json")
@@ -728,6 +742,183 @@ res.json(resultados)
 
 })
 
+app.post("/login", async (req,res)=>{
+
+try{
+
+const {usuario,senha} = req.body
+
+console.log("🔐 [AUTH] Tentativa de login:", usuario)
+
+if(!usuario || !senha){
+
+console.log("⚠️ [AUTH] Usuario ou senha não enviados")
+
+return res.status(400).json({erro:"Dados inválidos"})
+
+}
+
+const user = await autenticar(usuario,senha)
+
+if(!user){
+
+console.log("❌ [AUTH] Login inválido para:",usuario)
+
+return res.status(401).json({erro:"Login inválido"})
+
+}
+
+const token = jwt.sign(user,"docai_secret",{expiresIn:"8h"})
+
+console.log("✅ [AUTH] Login realizado:",usuario)
+
+res.json({
+token,
+nome:user.nome
+})
+
+}catch(err){
+
+console.error("🔥 [AUTH ERROR]",err)
+
+res.status(500).json({
+erro:"Erro interno no login"
+})
+
+}
+
+})
+
+
+
+app.post("/resetar_senha",auth,async(req,res)=>{
+
+if(req.usuario.usuario !== "kelvis"){
+return res.status(403).json({erro:"Apenas KELVIS pode resetar senha"})
+}
+
+const {usuario,novaSenha} = req.body
+
+const hash = await bcrypt.hash(novaSenha,10)
+
+const conn = await getConnection()
+
+await conn.execute(
+`UPDATE DOCAI_USUARIOS SET SENHA_HASH=:s WHERE USUARIO=:u`,
+{s:hash,u:usuario}
+)
+
+await conn.commit()
+await conn.close()
+
+res.json({ok:true})
+
+})
+
+app.post("/criar_usuario", async (req,res)=>{
+
+try{
+
+const {usuario,nome,senha}=req.body
+
+console.log("👤 [AUTH] Criando usuário:",usuario)
+
+if(!usuario || !senha){
+
+console.log("⚠️ [AUTH] Dados incompletos")
+
+return res.status(400).json({erro:"Dados inválidos"})
+}
+
+const hash=await bcrypt.hash(senha,10)
+
+const conn=await getConnection()
+
+await conn.execute(
+`INSERT INTO DOCAI_USUARIOS (USUARIO,NOME,SENHA_HASH,PERFIL)
+VALUES (:u,:n,:s,'USER')`,
+{u:usuario,n:nome,s:hash}
+)
+
+await conn.commit()
+await conn.close()
+
+console.log("✅ [AUTH] Usuário criado:",usuario)
+
+res.json({ok:true})
+
+}catch(err){
+
+console.error("🔥 [AUTH ERROR criar_usuario]",err)
+
+res.status(500).json({
+erro:"Erro ao criar usuário"
+})
+
+}
+
+})
+
+
+app.get("/", (req,res)=>{
+res.sendFile(path.join(__dirname,"public","login.html"))
+
+
+})
+
+
+
+
+async function criarUsuarioMaster(){
+
+try{
+
+const conn = await getConnection()
+
+const check = await conn.execute(
+`SELECT USUARIO FROM DOCAI_USUARIOS WHERE USUARIO='kelvis'`
+)
+
+if(check.rows.length === 0){
+
+const bcrypt = require("bcrypt")
+
+const senha = await bcrypt.hash("admin123",10)
+
+await conn.execute(
+`INSERT INTO DOCAI_USUARIOS (USUARIO,NOME,SENHA_HASH,PERFIL)
+VALUES ('kelvis','Kelvis','${senha}','ADMIN')`
+)
+
+await conn.commit()
+
+console.log("👑 Usuário MASTER criado: kelvis / admin123")
+
+}
+
+await conn.close()
+
+}catch(err){
+
+console.error("[AUTH INIT ERROR]",err)
+
+}
+
+}
+
+criarUsuarioMaster()
+
+process.on("uncaughtException",(err)=>{
+
+console.error("🔥 ERRO GLOBAL:",err)
+
+})
+
+process.on("unhandledRejection",(err)=>{
+
+console.error("🔥 PROMISE ERROR:",err)
+
+})
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`🚀 Servidor rodando na porta ${PORT}`);
   console.log(`👉 Acesse: http://localhost:${PORT}`);
