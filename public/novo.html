@@ -3,6 +3,40 @@
 
 <head>
 <meta charset="UTF-8">
+
+<script>
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+const usuario = localStorage.getItem("usuario_nome")
+
+if(!usuario){
+
+window.location="/login.html"
+return
+
+}
+
+const campo = document.getElementById("usuarioLogado")
+
+if(campo){
+campo.innerText = usuario
+}
+
+})
+
+function logout(){
+
+localStorage.removeItem("token")
+localStorage.removeItem("usuario_nome")
+
+window.location="/login.html"
+
+}
+
+</script>
+
+
 <script>
 
 if(!localStorage.getItem("token")){
@@ -68,6 +102,10 @@ background:#0056b3;
 
 <body>
 
+<div style="text-align:right;font-size:14px;margin-bottom:10px;">
+👤 <b id="usuarioLogado"></b>
+<button class="btn btn-sm btn-outline-danger ms-2" onclick="logout()">Sair</button>
+</div>
 <div class="top-bar">
 DocAI • Registro de Atendimento
 </div>

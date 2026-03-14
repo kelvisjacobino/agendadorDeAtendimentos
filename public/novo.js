@@ -6,6 +6,19 @@ window.gerarRelatorio = gerarRelatorio;
 
 document.addEventListener("DOMContentLoaded", () => {
 
+  const usuario = localStorage.getItem("usuario_nome");
+
+if(usuario){
+
+const campoResponsavel = document.getElementById("responsavel");
+
+if(campoResponsavel){
+campoResponsavel.value = usuario;
+campoResponsavel.readOnly = true;
+console.log("[AUTH] Responsável definido automaticamente:", usuario);
+}
+
+}
     document.getElementById("problema").addEventListener("input", ()=>{
 
 clearTimeout(window.timerDiagnostico)

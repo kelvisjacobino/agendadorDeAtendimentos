@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+
+<title>Insights da IA</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f6f9;
+padding:30px;
+}
+
+.card{
+background:white;
+padding:20px;
+margin-bottom:15px;
+border-radius:8px;
+box-shadow:0 2px 6px rgba(0,0,0,0.1);
+}
+
+.titulo{
+font-size:22px;
+margin-bottom:20px;
+}
+
+button{
+padding:10px 15px;
+border:none;
+background:#0066ff;
+color:white;
+border-radius:5px;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="titulo">📈 Insights da IA</div>
+
+<button onclick="carregarInsights()">Gerar Insights</button>
+
+<div id="listaInsights"></div>
+
+<h3>🧠 Análise da IA</h3>
+
+<button onclick="gerarAnaliseIA()">Gerar Análise IA</button>
+
+<div id="analiseIA"></div>
+
+<script src="/js/insights.js"></script>
+
+</body>
+</html>

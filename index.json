@@ -386,5 +386,59 @@
     "solucao": "teste s",
     "arquivo": "docs\\2026\\03\\teste_4348_ATD676875_20260312.txt",
     "conteudo": "teste p teste c teste s"
+  },
+  {
+    "cliente": "kelvis",
+    "atendimento": "2213",
+    "problema": "sistema nao inicia",
+    "causa": "banco offline",
+    "solucao": "iniciado banco via putty",
+    "arquivo": "docs\\2026\\03\\kelvis_ATD2213_20260313.txt",
+    "conteudo": "sistema nao inicia banco offline iniciado banco via putty"
+  },
+  {
+    "cliente": "TOTAL AUTO PEÇAS",
+    "atendimento": "715811",
+    "problema": ". PRECISAMOS VERIFICAR UM VALOR EM ABERTO DE CRÉDITO DE CLIENTES, CRÉDITOS ANTIGOS ENTRE OS ANOS 2000 A 2023. VALOR TOTAL R$ 2.562,61. GOSTARIAMOS DE ZERAR ESSES CRÉDITOS, ´POIS ACREDITAMOS QUE SE TRATA DE UM ERRO NO SISTEMA. \nFICO NO AGUARDO",
+    "causa": "CREDITOS ANTIGOS E CLIENTE DESEJA BAIXAR O MESMO",
+    "solucao": "FOI CONSULTADO OS CREDITOS E BAIXADO OS MESMOS COM O SEGUINTE SQL\nSELECT C.CREDITO_ID, C.VLR_CREDITO,C.VLR_BAIXADO,C.EMPRESA_ID,\n       (C.VLR_CREDITO - C.VLR_BAIXADO) AS VLR_DISPONIVEL\nFROM CREDITOS C\nWHERE C.DATA_CADASTRO BETWEEN TO_DATE('01/01/2000','DD/MM/YYYY') AND TO_DATE('31/12/2023','DD/MM/YYYY')\nAND   C.VLR_CREDITO <> C.VLR_BAIXADO\nAND C.TIPO_CONTA = 'CR'\n\n\nUPDATE CREDITOS C SET C.VLR_BAIXADO = C.VLR_CREDITO,C.OBSERVACAO = C.OBSERVACAO || 'BAIXADA VIA SCRIPT'\nWHERE C.DATA_CADASTRO BETWEEN TO_DATE('01/01/2000','DD/MM/YYYY') AND TO_DATE('31/12/2023','DD/MM/YYYY')\nAND   C.VLR_CREDITO <> C.VLR_BAIXADO\nAND C.TIPO_CONTA = 'CR'\n\n",
+    "arquivo": "docs\\2026\\03\\TOTAL_AUTO_PEÇAS_ATD715811_20260313.txt",
+    "conteudo": ". precisamos verificar um valor em aberto de crédito de clientes, créditos antigos entre os anos 2000 a 2023. valor total r$ 2.562,61. gostariamos de zerar esses créditos, ´pois acreditamos que se trata de um erro no sistema. \nfico no aguardo creditos antigos e cliente deseja baixar o mesmo foi consultado os creditos e baixado os mesmos com o seguinte sql\nselect c.credito_id, c.vlr_credito,c.vlr_baixado,c.empresa_id,\n       (c.vlr_credito - c.vlr_baixado) as vlr_disponivel\nfrom creditos c\nwhere c.data_cadastro between to_date('01/01/2000','dd/mm/yyyy') and to_date('31/12/2023','dd/mm/yyyy')\nand   c.vlr_credito <> c.vlr_baixado\nand c.tipo_conta = 'cr'\n\n\nupdate creditos c set c.vlr_baixado = c.vlr_credito,c.observacao = c.observacao || 'baixada via script'\nwhere c.data_cadastro between to_date('01/01/2000','dd/mm/yyyy') and to_date('31/12/2023','dd/mm/yyyy')\nand   c.vlr_credito <> c.vlr_baixado\nand c.tipo_conta = 'cr'\n\n"
+  },
+  {
+    "cliente": "BARREIRAS INFORMATICA",
+    "atendimento": "715820",
+    "problema": "VERIFICAR EMAILS DE NOTAS E BOLETOS QUE NÃO ESTÃO SENDO ENVIADOS",
+    "causa": "CONFIGURAÇÃO ERRADA DE EMAIL",
+    "solucao": "FOI VERIFICADO QUE O SMTP DO CLIENTE ALTEROU\nINFORMADO ENTAO O NOVO SMTP E O TIPO DE SEGURANÇA \nCONFIGURAÇÕES DE CONEXÃO SMTP\nSERVIDOR SMTP: S4US.HMSERVERS.NET\n\nPORTA: 587\n\n\nUSUÁRIO: COMERCIAL@BARREIRASINFORMATICA.COM.BR\n\n\nTIPO DE CRYPTOGRAFIA: UTNOTLSSUPPORT (NOTA: EMBORA ESTEJA MARCADO COMO \"SEM SUPORTE TLS\", NA PORTA 587 ESSE SERVIDOR ESPECÍFICO ACEITOU A CONEXÃO INICIAL SEM EXIGIR O COMANDO IMEDIATO DE SEGURANÇA).\n\n\nSERVIDOR UTILIZA AUTENTICAÇÃO? SIM (MARCADO).",
+    "arquivo": "docs\\2026\\03\\BARREIRAS_INFORMATICA_ATD715820_20260313.txt",
+    "conteudo": "verificar emails de notas e boletos que não estão sendo enviados configuração errada de email foi verificado que o smtp do cliente alterou\ninformado entao o novo smtp e o tipo de segurança \nconfigurações de conexão smtp\nservidor smtp: s4us.hmservers.net\n\nporta: 587\n\n\nusuário: comercial@barreirasinformatica.com.br\n\n\ntipo de cryptografia: utnotlssupport (nota: embora esteja marcado como \"sem suporte tls\", na porta 587 esse servidor específico aceitou a conexão inicial sem exigir o comando imediato de segurança).\n\n\nservidor utiliza autenticação? sim (marcado)."
+  },
+  {
+    "cliente": "UNIFARMA FARMACEUTICA",
+    "atendimento": "715821",
+    "problema": "ERRO AO EMITIR PEDIDO",
+    "causa": "PENDENCIA DE ESTOQUE, OU LOTE VENCIDO OU QUANTIDADE NO LOTE",
+    "solucao": "ORIENTADO CLIENTE A VERIFICAR OS PRODUTOS, COMO LOTE, DATA DE VALIDADE, OU ESTOQUE",
+    "arquivo": "docs\\2026\\03\\UNIFARMA_FARMACEUTICA_ATD715821_20260313.txt",
+    "conteudo": "erro ao emitir pedido pendencia de estoque, ou lote vencido ou quantidade no lote orientado cliente a verificar os produtos, como lote, data de validade, ou estoque"
+  },
+  {
+    "cliente": "Thais",
+    "atendimento": "250388",
+    "problema": "MARIA TEREZA NAO DORME",
+    "causa": "EXCESSO DE TELAS",
+    "solucao": "REDUZIR TELAS AO DECORRER DO DIA",
+    "arquivo": "docs\\2026\\03\\Thais_ATD250388_20260314.txt",
+    "conteudo": "maria tereza nao dorme excesso de telas reduzir telas ao decorrer do dia"
+  },
+  {
+    "cliente": "Thais",
+    "atendimento": "010103",
+    "problema": "MARIA TEREZA NAO DORME",
+    "causa": "EXCESSO DE TELAS",
+    "solucao": "REDUZIR TELAS AO DECORRER DO DIA",
+    "arquivo": "docs\\2026\\03\\Thais_ATD010103_20260314.txt",
+    "conteudo": "maria tereza nao dorme excesso de telas reduzir telas ao decorrer do dia"
   }
 ]

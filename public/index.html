@@ -4,71 +4,195 @@
 <head>
 
 <meta charset="UTF-8">
- <script> if(!localStorage.getItem("token")){
 
-alert("Você precisa fazer login")
-
-window.location="/login.html"
-
-}  </script> 
 <script>
 
-const usuario=localStorage.getItem("usuario_nome")
+if(!localStorage.getItem("token")){
+alert("Você precisa fazer login")
+window.location="/login.html"
+}
 
-if(usuario){
+document.addEventListener("DOMContentLoaded",()=>{
 
-document.title="DocAI - "+usuario
+const usuario = localStorage.getItem("usuario_nome")
+
+if(!usuario){
+window.location="/login.html"
+return
+}
+
+document.getElementById("usuarioLogado").innerText = usuario
+
+})
+
+function logout(){
+
+localStorage.removeItem("token")
+localStorage.removeItem("usuario_nome")
+
+window.location="/login.html"
 
 }
 
 </script>
-<title>DocAI - Central de Suporte Inteligente</title>
+
+<title>DocAI - Central Inteligente</title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <style>
 
 body{
-background:#f4f6f9;
+margin:0;
 font-family:Segoe UI,Arial;
+background:#f4f6f9;
+}
+.menu-item{
+padding:10px;
+cursor:pointer;
+border-radius:6px;
+margin-top:8px;
+color:#cfd8dc;
 }
 
-.top-bar{
+.menu-item:hover{
+background:#32475b;
+}
+
+.submenu{
+display:none;
+margin-left:10px;
+}
+
+.submenu a{
+font-size:14px;
+padding:8px;
+}
+.sidebar{
+
+position:fixed;
+left:0;
+top:0;
+width:230px;
+height:100%;
 background:#1f2d3d;
+padding:20px;
 color:white;
-padding:12px 20px;
-font-size:20px;
-font-weight:600;
+
 }
 
-.container-main{
-max-width:1000px;
-margin:auto;
-margin-top:30px;
+.sidebar h4{
+margin-bottom:30px;
+}
+
+.sidebar a{
+
+display:block;
+padding:10px;
+margin-bottom:5px;
+color:#cfd8dc;
+text-decoration:none;
+border-radius:6px;
+
+}
+
+.sidebar a:hover{
+
+background:#32475b;
+color:white;
+
+}
+
+.main{
+
+margin-left:230px;
+padding:20px;
+
+}
+
+.topbar{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+
 }
 
 .card{
+
 border:none;
 border-radius:10px;
 box-shadow:0 4px 10px rgba(0,0,0,0.08);
+
 }
 
-.resultado-card{
-border-left:4px solid #0d6efd;
-}
 
 </style>
 
 </head>
 
 <body>
-   
 
-<div class="top-bar">
-DocAI • Central Inteligente de Atendimentos
+<!-- MENU LATERAL -->
+
+<div class="sidebar">
+
+<h2>DocAI</h2>
+
+<a href="index.html">📊 Dashboard</a>
+
+<div class="menu-item" onclick="toggleMenu('menuAtendimentos')">
+📂 Atendimentos
 </div>
 
-<div class="container container-main">
+<div id="menuAtendimentos" class="submenu">
+<a href="buscar.html">📄 Consultar Atendimentos</a>
+<a href="novo.html">➕ Novo Atendimento</a>
+</div>
+
+
+<div class="menu-item" onclick="toggleMenu('menuIA')">
+🤖 Inteligência
+</div>
+
+<div id="menuIA" class="submenu">
+<a href="#" onclick="abrirAssistente()">💬 Assistente IA</a>
+<a href="base.html">📚 Base de Conhecimento</a>
+<a href="insights.html">📈 Insights da IA</a>
+</div>
+
+
+<div class="menu-item" onclick="toggleMenu('menuAdmin')">
+⚙ Administração
+</div>
+
+<div id="menuAdmin" class="submenu">
+<a href="usuarios.html">👥 Usuários</a>
+<a href="config.html">⚙ Configurações</a>
+</div>
+
+</div>
+<!-- CONTEÚDO -->
+
+<div class="main">
+
+<div class="topbar">
+
+<h4>Central Inteligente de Atendimentos</h4>
+
+<div>
+
+👤 <b id="usuarioLogado"></b>
+
+<button class="btn btn-sm btn-outline-danger ms-2" onclick="logout()">
+Sair
+</button>
+
+</div>
+
+</div>
+
 
 <!-- AÇÕES -->
 
@@ -98,7 +222,8 @@ Novo Atendimento
 
 <div class="input-group">
 
-<input id="termoBusca" class="form-control"
+<input id="termoBusca"
+class="form-control"
 placeholder="Digite problema, cliente ou código">
 
 <button class="btn btn-primary" onclick="buscar()">
@@ -115,12 +240,13 @@ Buscar
 
 <!-- ASSISTENTE IA -->
 
-<div class="card mt-4">
+<div class="card mt-4" id="assistente">
 <div class="card-body">
 
 <h5>Assistente Técnico DocAI</h5>
 
-<div id="chatBox" style="
+<div id="chatBox"
+style="
 height:300px;
 overflow-y:auto;
 background:#f8f9fa;
@@ -131,7 +257,8 @@ margin-bottom:10px;
 
 <div class="input-group">
 
-<input id="perguntaIA" class="form-control"
+<input id="perguntaIA"
+class="form-control"
 placeholder="Pergunte algo... ex: nota fiscal não valida">
 
 <button onclick="perguntarIA()" class="btn btn-success">
@@ -143,8 +270,26 @@ Enviar
 </div>
 </div>
 
+</div>
+
 <script src="js/app.js"></script>
-  
+<script>
+
+function toggleMenu(id){
+
+const menu = document.getElementById(id)
+
+if(menu.style.display === "block"){
+menu.style.display = "none"
+}else{
+menu.style.display = "block"
+}
+
+}
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

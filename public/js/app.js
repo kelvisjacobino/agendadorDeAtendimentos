@@ -25,6 +25,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
     }
+    const usuario = localStorage.getItem("usuario_nome") || "Usuário"
+
+const campo = document.getElementById("nomeUsuarioIA")
+
+if(campo){
+campo.innerText = usuario
+}
 
     const inputIA = document.getElementById("perguntaIA")
 
@@ -450,5 +457,35 @@ async function buscarGemini(termo){
         `
 
     }
+
+}
+
+function alterarSenha(){
+
+const senha = prompt("Digite sua nova senha")
+
+if(!senha) return
+
+fetch("/alterar_senha",{
+
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+
+usuario:localStorage.getItem("usuario_nome"),
+senha
+
+})
+
+})
+.then(r=>r.json())
+.then(()=>{
+
+alert("Senha alterada com sucesso")
+
+})
 
 }

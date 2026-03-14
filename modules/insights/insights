@@ -1,0 +1,41 @@
+const { gerarInsights, gerarInsightsIA } = require("./insights.service")
+
+module.exports = function(app){
+
+app.get("/insights", async(req,res)=>{
+
+try{
+
+const insights = await gerarInsights()
+
+res.json(insights)
+
+}catch(err){
+
+console.error("[INSIGHTS ERROR]",err)
+
+res.status(500).json([])
+
+}
+
+})
+
+app.get("/insights/ia", async(req,res)=>{
+
+try{
+
+const insights = await gerarInsightsIA()
+
+res.json(insights)
+
+}catch(err){
+
+console.error("[INSIGHTS IA ERROR]",err)
+
+res.status(500).json({erro:"Erro ao gerar insights"})
+
+}
+
+})
+
+}
