@@ -5,6 +5,31 @@
 // ======================================
 // EVENTOS AO CARREGAR A PÁGINA
 // ======================================
+document.addEventListener("input", function(e){
+
+ const el = e.target
+
+ if(el.matches("input[type='text'], textarea")){
+  
+  const pos = el.selectionStart
+  
+  el.value = el.value.toUpperCase()
+  
+  el.setSelectionRange(pos,pos)
+
+ }
+
+})
+
+function destacar(texto, termo){
+
+if(!texto) return ""
+
+const regex = new RegExp(`(${termo})`,"gi")
+
+return texto.replace(regex,"<mark>$1</mark>")
+
+}
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -363,6 +388,7 @@ document.getElementById("iaLoading").remove()
 
 let resposta = ""
 
+
 if(!dados || dados.length === 0){
 
 resposta = "Nenhuma solução encontrada."
@@ -371,12 +397,19 @@ resposta = "Nenhuma solução encontrada."
 
 dados.forEach(r=>{
 
-resposta += `
-<div style="margin-bottom:10px">
+const problema = destacar(r.problema, pergunta)
+const causa = destacar(r.causa, pergunta)
+const solucao = destacar(r.solucao, pergunta)
 
-<b>Problema:</b> ${r.problema}<br>
-<b>Causa:</b> ${r.causa}<br>
-<b>Solução:</b> ${r.solucao}
+resposta += `
+<div style="margin-bottom:15px;padding:10px;border-left:4px solid #0d6efd;background:#f8f9fa">
+
+<b>Cliente:</b> ${r.cliente || "-"}<br>
+<b>Atendimento:</b> ${r.atendimento || "-"}<br><br>
+
+<b>Problema:</b> ${problema}<br>
+<b>Causa:</b> ${causa}<br>
+<b>Solução:</b> ${solucao}
 
 </div>
 `

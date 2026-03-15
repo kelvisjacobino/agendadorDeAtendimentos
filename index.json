@@ -2,443 +2,421 @@
   {
     "cliente": "KELVIS",
     "atendimento": "141162",
-    "arquivo": "KELVIS_ATD141162_20260306.txt",
-    "caminho": "docs/2026/03/KELVIS_ATD141162_20260306.txt",
     "data": "20260306",
-    "conteudo": "\n========================================\nrelatorio de atendimento\n========================================\ncliente: kelvis\ncod cliente: 2503\ncod atendimento: 141162\ndata: 06/03/2026, 17:21:26\nresponsavel: kelvis\n----------------------------------------\nproblema:\nteste \n----------------------------------------\ncausa raiz:\nteste plata forma\n----------------------------------------\nsolucao:\ntestada plataforma \n----------------------------------------\nstatus: finalizado\n========================================\n"
+    "problema": "teste ",
+    "causa": "",
+    "solucao": "testada plataforma ",
+    "conteudo": "\n========================================\nrelatorio de atendimento\n========================================\ncliente: kelvis\ncod cliente: 2503\ncod atendimento: 141162\ndata: 06/03/2026, 17:21:26\nresponsavel: kelvis\n----------------------------------------\nproblema:\nteste \n----------------------------------------\ncausa raiz:\nteste plata forma\n----------------------------------------\nsolucao:\ntestada plataforma \n----------------------------------------\nstatus: finalizado\n========================================\n",
+    "arquivo": "docs/2026/03/KELVIS_ATD141162_20260306.txt"
   },
   {
     "cliente": "CASA DO SINDICO",
     "atendimento": "715206",
-    "arquivo": "CASA_DO_SINDICO_ATD715206_20260306.txt",
-    "caminho": "docs/2026/03/CASA_DO_SINDICO_ATD715206_20260306.txt",
     "data": "20260306",
-    "conteudo": "\n========================================\nrelatorio de atendimento\n========================================\ncliente: casa do sindico\ncod cliente: 890\ncod atendimento: 715206\ndata: 06/03/2026, 17:30:34\nresponsavel: kelvis\n----------------------------------------\nproblema:\nerro ao validar nota fiscal\n----------------------------------------\ncausa raiz:\nicms com valor negativo\n----------------------------------------\nsolucao:\najustado o valor com o seguinte select\nselect im.classe_fiscal, im.vlr_icms_retido, rowid\nfrom itens_movimento im\nwhere pedido_id = 242\nand im.tipo_movimento = 'sd'\n----------------------------------------\nstatus: finalizado\n========================================\n"
+    "problema": "erro ao validar nota fiscal",
+    "causa": "",
+    "solucao": "ajustado o valor com o seguinte select",
+    "conteudo": "\n========================================\nrelatorio de atendimento\n========================================\ncliente: casa do sindico\ncod cliente: 890\ncod atendimento: 715206\ndata: 06/03/2026, 17:30:34\nresponsavel: kelvis\n----------------------------------------\nproblema:\nerro ao validar nota fiscal\n----------------------------------------\ncausa raiz:\nicms com valor negativo\n----------------------------------------\nsolucao:\najustado o valor com o seguinte select\nselect im.classe_fiscal, im.vlr_icms_retido, rowid\nfrom itens_movimento im\nwhere pedido_id = 242\nand im.tipo_movimento = 'sd'\n----------------------------------------\nstatus: finalizado\n========================================\n",
+    "arquivo": "docs/2026/03/CASA_DO_SINDICO_ATD715206_20260306.txt"
   },
   {
     "cliente": "loja teste",
     "atendimento": "12354",
-    "arquivo": "loja_teste_ATD12354_20260306.txt",
-    "caminho": "docs/2026/03/loja_teste_ATD12354_20260306.txt",
-    "data": "20260306",
-    "conteudo": "\n========================================\nrelatorio de atendimento\n========================================\ncliente: loja teste\ncod cliente: 1490\ncod atendimento: 12354\ndata: 06/03/2026, 18:07:18\nresponsavel: kelvis\n----------------------------------------\nproblema:\naasdf\n----------------------------------------\ncausa raiz:\nasdfas\n----------------------------------------\nsolucao:\nasdfasdf\n----------------------------------------\nstatus: finalizado\n========================================\n"
-  },
-  {
-    "cliente": "loja teste",
-    "atendimento": "12354",
-    "arquivo": "loja_teste_ATD12354_20260306.txt",
-    "caminho": "docs/2026/03/loja_teste_ATD12354_20260306.txt",
-    "conteudo": "\n========================================\nrelatorio de atendimento\n========================================\ncliente: loja teste\ncod cliente: 1490\ncod atendimento: 12354\ndata: 06/03/2026, 18:07:18\nresponsavel: kelvis\n----------------------------------------\nproblema:\naasdf\n----------------------------------------\ncausa raiz:\nasdfas\n----------------------------------------\nsolucao:\nasdfasdf\n----------------------------------------\nstatus: finalizado\n========================================\n"
+    "data": "",
+    "problema": "aasdf",
+    "causa": "",
+    "solucao": "asdfasdf",
+    "conteudo": "\n========================================\nrelatorio de atendimento\n========================================\ncliente: loja teste\ncod cliente: 1490\ncod atendimento: 12354\ndata: 06/03/2026, 18:07:18\nresponsavel: kelvis\n----------------------------------------\nproblema:\naasdf\n----------------------------------------\ncausa raiz:\nasdfas\n----------------------------------------\nsolucao:\nasdfasdf\n----------------------------------------\nstatus: finalizado\n========================================\n",
+    "arquivo": "docs/2026/03/loja_teste_ATD12354_20260306.txt"
   },
   {
     "cliente": "kelvis",
     "atendimento": "2503",
-    "arquivo": "kelvis_ATD2503_20260309.txt",
-    "caminho": "docs/2026/03/kelvis_ATD2503_20260309.txt",
     "data": "20260309",
-    "conteudo": "\n========================================\nrelatorio de atendimento\n========================================\ncliente: kelvis\ncod cliente: 1411\ncod atendimento: 2503\ndata: 09/03/2026, 09:36:48\nresponsavel: kelvis\n----------------------------------------\nproblema:\ncansaço\n----------------------------------------\ncausa raiz:\nbebida\n----------------------------------------\nsolucao:\ndormir\n----------------------------------------\nstatus: finalizado\n========================================"
+    "problema": "",
+    "causa": "",
+    "solucao": "",
+    "conteudo": "erro de emissao de nota",
+    "arquivo": "docs\\2026\\03\\kelvis_ATD2503_20260309.txt"
   },
   {
-    "cliente": "kelvis",
-    "atendimento": "2503",
-    "arquivo": "kelvis_ATD2503_20260309.txt",
-    "caminho": "docs/2026/03/kelvis_ATD2503_20260309.txt",
-    "conteudo": "\n========================================\nrelatorio de atendimento\n========================================\ncliente: kelvis\ncod cliente: 1411\ncod atendimento: 2503\ndata: 09/03/2026, 09:36:48\nresponsavel: kelvis\n----------------------------------------\nproblema:\ncansaço\n----------------------------------------\ncausa raiz:\nbebida\n----------------------------------------\nsolucao:\ndormir\n----------------------------------------\nstatus: finalizado\n========================================"
-  },
-  {
-    "cliente": "aaa",
+    "cliente": "Thais",
     "atendimento": "250388",
-    "arquivo": "aaa_ATD250388_20260309.txt",
-    "caminho": "docs/2026/03/aaa_ATD250388_20260309.txt",
-    "data": "20260309",
-    "conteudo": "relatório: aaa\nprob: aaa\nsol: aaaa"
-  },
-  {
-    "cliente": "aaa",
-    "atendimento": "250388",
-    "arquivo": "aaa_ATD250388_20260309.txt",
-    "caminho": "docs/2026/03/aaa_ATD250388_20260309.txt",
-    "conteudo": "relatório: aaa\nprob: aaa\nsol: aaaa"
+    "data": "",
+    "problema": "MARIA TEREZA NAO DORME",
+    "causa": "EXCESSO DE TELAS",
+    "solucao": "REDUZIR TELAS AO DECORRER DO DIA",
+    "conteudo": "maria tereza nao dorme excesso de telas reduzir telas ao decorrer do dia",
+    "arquivo": "docs\\2026\\03\\Thais_ATD250388_20260314.txt"
   },
   {
     "cliente": "aaaa",
     "atendimento": "1516",
-    "arquivo": "aaaa_ATD1516_20260309.txt",
-    "caminho": "docs/2026/03/aaaa_ATD1516_20260309.txt",
-    "data": "20260309",
-    "conteudo": "relatório: aaaa\nprob: asdfa\nsol: adsfasdf"
-  },
-  {
-    "cliente": "aaaa",
-    "atendimento": "1516",
-    "arquivo": "aaaa_ATD1516_20260309.txt",
-    "caminho": "docs/2026/03/aaaa_ATD1516_20260309.txt",
-    "conteudo": "relatório: aaaa\nprob: asdfa\nsol: adsfasdf"
+    "data": "",
+    "problema": "",
+    "causa": "",
+    "solucao": "",
+    "conteudo": "relatório: aaaa\nprob: asdfa\nsol: adsfasdf",
+    "arquivo": "docs/2026/03/aaaa_ATD1516_20260309.txt"
   },
   {
     "cliente": "kelvis",
     "atendimento": "2235",
-    "arquivo": "kelvis_ATD2235_20260309.txt",
-    "caminho": "docs/2026/03/kelvis_ATD2235_20260309.txt",
-    "data": "20260309",
-    "conteudo": "========================================\nrelatorio: kelvis\n========================================\nproblema: aa\ncausa: a\nsolucao: aa\nstatus: finalizado"
-  },
-  {
-    "cliente": "kelvis",
-    "atendimento": "2235",
-    "arquivo": "kelvis_ATD2235_20260309.txt",
-    "caminho": "docs/2026/03/kelvis_ATD2235_20260309.txt",
-    "conteudo": "========================================\nrelatorio: kelvis\n========================================\nproblema: aa\ncausa: a\nsolucao: aa\nstatus: finalizado"
+    "data": "",
+    "problema": "aa",
+    "causa": "a",
+    "solucao": "aa",
+    "conteudo": "========================================\nrelatorio: kelvis\n========================================\nproblema: aa\ncausa: a\nsolucao: aa\nstatus: finalizado",
+    "arquivo": "docs/2026/03/kelvis_ATD2235_20260309.txt"
   },
   {
     "cliente": "kelvis",
     "atendimento": "250389",
-    "arquivo": "kelvis_ATD250389_20260309.txt",
-    "caminho": "docs/2026/03/kelvis_ATD250389_20260309.txt",
-    "data": "20260309",
-    "conteudo": "relatório: kelvis\ncod: 1411\nproblema: tste"
-  },
-  {
-    "cliente": "kelvis",
-    "atendimento": "250389",
-    "arquivo": "kelvis_ATD250389_20260309.txt",
-    "caminho": "docs/2026/03/kelvis_ATD250389_20260309.txt",
-    "conteudo": "relatório: kelvis\ncod: 1411\nproblema: tste"
+    "data": "",
+    "problema": "tste",
+    "causa": "",
+    "solucao": "",
+    "conteudo": "relatório: kelvis\ncod: 1411\nproblema: tste",
+    "arquivo": "docs/2026/03/kelvis_ATD250389_20260309.txt"
   },
   {
     "cliente": "teste",
     "atendimento": "251313",
-    "arquivo": "teste_ATD251313_20260309.txt",
-    "caminho": "docs/2026/03/teste_ATD251313_20260309.txt",
-    "data": "20260309",
-    "conteudo": "relatório: teste\ncod: 1411\nproblema: adfas"
-  },
-  {
-    "cliente": "teste",
-    "atendimento": "251313",
-    "arquivo": "teste_ATD251313_20260309.txt",
-    "caminho": "docs/2026/03/teste_ATD251313_20260309.txt",
-    "conteudo": "relatório: teste\ncod: 1411\nproblema: adfas"
+    "data": "",
+    "problema": "adfas",
+    "causa": "",
+    "solucao": "",
+    "conteudo": "relatório: teste\ncod: 1411\nproblema: adfas",
+    "arquivo": "docs/2026/03/teste_ATD251313_20260309.txt"
   },
   {
     "cliente": "kelvis",
     "atendimento": "1010",
-    "arquivo": "kelvis_ATD1010_20260309.txt",
-    "caminho": "docs/2026/03/kelvis_ATD1010_20260309.txt",
-    "data": "20260309",
-    "conteudo": "relatório: kelvis\ncod: 1411\nproblema: nfce"
-  },
-  {
-    "cliente": "kelvis",
-    "atendimento": "1010",
-    "arquivo": "kelvis_ATD1010_20260309.txt",
-    "caminho": "docs/2026/03/kelvis_ATD1010_20260309.txt",
-    "conteudo": "relatório: kelvis\ncod: 1411\nproblema: nfce"
+    "data": "",
+    "problema": "nfce",
+    "causa": "",
+    "solucao": "",
+    "conteudo": "relatório: kelvis\ncod: 1411\nproblema: nfce",
+    "arquivo": "docs/2026/03/kelvis_ATD1010_20260309.txt"
   },
   {
     "cliente": "teste",
     "atendimento": "250311",
-    "arquivo": "teste_ATD250311_20260309.txt",
-    "caminho": "docs/2026/03/teste_ATD250311_20260309.txt",
-    "data": "20260309",
-    "conteudo": "relatório: teste\ncod: 1490\nproblema: enjoar"
-  },
-  {
-    "cliente": "teste",
-    "atendimento": "250311",
-    "arquivo": "teste_ATD250311_20260309.txt",
-    "caminho": "docs/2026/03/teste_ATD250311_20260309.txt",
-    "conteudo": "relatório: teste\ncod: 1490\nproblema: enjoar"
+    "data": "",
+    "problema": "enjoar",
+    "causa": "",
+    "solucao": "",
+    "conteudo": "relatório: teste\ncod: 1490\nproblema: enjoar",
+    "arquivo": "docs/2026/03/teste_ATD250311_20260309.txt"
   },
   {
     "cliente": "teste 01",
     "atendimento": "22233354",
-    "arquivo": "teste_01_ATD22233354_20260309.txt",
-    "caminho": "docs/2026/03/teste_01_ATD22233354_20260309.txt",
-    "data": "20260309",
-    "conteudo": "relatório: teste 01\ncod: 2020\nproblema: teste"
-  },
-  {
-    "cliente": "teste 01",
-    "atendimento": "22233354",
-    "arquivo": "teste_01_ATD22233354_20260309.txt",
-    "caminho": "docs/2026/03/teste_01_ATD22233354_20260309.txt",
-    "conteudo": "relatório: teste 01\ncod: 2020\nproblema: teste"
+    "data": "",
+    "problema": "teste",
+    "causa": "",
+    "solucao": "",
+    "conteudo": "relatório: teste 01\ncod: 2020\nproblema: teste",
+    "arquivo": "docs/2026/03/teste_01_ATD22233354_20260309.txt"
   },
   {
     "cliente": "kelvis",
     "atendimento": "25031988",
-    "arquivo": "kelvis_ATD25031988_20260309.txt",
-    "caminho": "docs/2026/03/kelvis_ATD25031988_20260309.txt",
-    "data": "20260309",
-    "conteudo": "relatório: kelvis\ncod: 1411\nproblema: teste 0112"
-  },
-  {
-    "cliente": "kelvis",
-    "atendimento": "25031988",
-    "arquivo": "kelvis_ATD25031988_20260309.txt",
-    "caminho": "docs/2026/03/kelvis_ATD25031988_20260309.txt",
-    "conteudo": "relatório: kelvis\ncod: 1411\nproblema: teste 0112"
+    "data": "",
+    "problema": "teste 0112",
+    "causa": "",
+    "solucao": "",
+    "conteudo": "relatório: kelvis\ncod: 1411\nproblema: teste 0112",
+    "arquivo": "docs/2026/03/kelvis_ATD25031988_20260309.txt"
   },
   {
     "cliente": "kelvis",
     "atendimento": "09012024",
-    "arquivo": "docs\\2026\\03\\kelvis_ATD09012024_20260309.txt",
-    "caminho": "docs\\2026\\03\\kelvis_ATD09012024_20260309.txt",
-    "conteudo": "relatório: kelvis\ncod: 1411\nproblema: teste"
+    "data": "",
+    "problema": "teste",
+    "causa": "",
+    "solucao": "",
+    "conteudo": "relatório: kelvis\ncod: 1411\nproblema: teste",
+    "arquivo": "docs\\2026\\03\\kelvis_ATD09012024_20260309.txt"
   },
   {
     "cliente": "kelvis",
     "atendimento": "0901202410",
-    "arquivo": "docs\\2026\\03\\kelvis_ATD0901202410_20260309.txt",
-    "caminho": "docs\\2026\\03\\kelvis_ATD0901202410_20260309.txt",
-    "conteudo": "relatório: kelvis\ncod: 1411\nproblema: tsasdf"
-  },
-  {
-    "cliente": "kelvis",
-    "atendimento": "0901202410",
-    "arquivo": "kelvis_ATD0901202410.txt",
-    "caminho": "docs/2026/03/kelvis_ATD0901202410.txt",
     "data": "20260309",
-    "conteudo": "relatório: kelvis\ncod: 1411\nproblema: tsasdf"
+    "problema": "tsasdf",
+    "causa": "",
+    "solucao": "",
+    "conteudo": "relatório: kelvis\ncod: 1411\nproblema: tsasdf",
+    "arquivo": "docs/2026/03/kelvis_ATD0901202410.txt"
   },
   {
     "cliente": "kelvis",
     "atendimento": "2503198877",
-    "arquivo": "kelvis_ATD2503198877_20260309.txt",
-    "caminho": "docs\\2026\\03\\kelvis_ATD2503198877_20260309.txt",
     "data": "20260309",
-    "conteudo": "relatório: kelvis\ncod: 1411\nproblema: teaea"
+    "problema": "teaea",
+    "causa": "",
+    "solucao": "",
+    "conteudo": "relatório: kelvis\ncod: 1411\nproblema: teaea",
+    "arquivo": "docs\\2026\\03\\kelvis_ATD2503198877_20260309.txt"
   },
   {
     "cliente": "kelvis",
     "atendimento": "2222333",
-    "arquivo": "kelvis_ATD2222333_20260309.txt",
-    "caminho": "docs\\2026\\03\\kelvis_ATD2222333_20260309.txt",
     "data": "20260309",
-    "conteudo": "relatório: kelvis\ncod: 1411\nproblema: teste"
+    "problema": "teste",
+    "causa": "",
+    "solucao": "",
+    "conteudo": "relatório: kelvis\ncod: 1411\nproblema: teste",
+    "arquivo": "docs\\2026\\03\\kelvis_ATD2222333_20260309.txt"
   },
   {
     "cliente": "kelvis",
     "atendimento": "99999",
-    "arquivo": "kelvis_ATD99999_20260309.txt",
-    "caminho": "docs\\2026\\03\\kelvis_ATD99999_20260309.txt",
     "data": "20260309",
-    "conteudo": "relatório: kelvis\ncod: 1411\nproblema: teste"
+    "problema": "teste",
+    "causa": "",
+    "solucao": "",
+    "conteudo": "relatório: kelvis\ncod: 1411\nproblema: teste",
+    "arquivo": "docs\\2026\\03\\kelvis_ATD99999_20260309.txt"
   },
   {
     "cliente": "kelvis",
     "atendimento": "25132026",
-    "arquivo": "kelvis_ATD25132026_20260309.txt",
-    "caminho": "docs\\2026\\03\\kelvis_ATD25132026_20260309.txt",
     "data": "20260309",
-    "conteudo": "relatório: kelvis\ncod: 1411\nproblema: teste"
+    "problema": "teste",
+    "causa": "",
+    "solucao": "",
+    "conteudo": "relatório: kelvis\ncod: 1411\nproblema: teste",
+    "arquivo": "docs\\2026\\03\\kelvis_ATD25132026_20260309.txt"
   },
   {
     "cliente": "kelvis",
     "atendimento": "222333366",
-    "arquivo": "kelvis_ATD222333366_20260309.txt",
-    "caminho": "docs\\2026\\03\\kelvis_ATD222333366_20260309.txt",
     "data": "20260309",
-    "conteudo": "teste"
+    "problema": "",
+    "causa": "",
+    "solucao": "",
+    "conteudo": "teste",
+    "arquivo": "docs\\2026\\03\\kelvis_ATD222333366_20260309.txt"
   },
   {
     "cliente": "kelvis",
     "atendimento": "25",
-    "arquivo": "kelvis_ATD25_20260309.txt",
-    "caminho": "docs\\2026\\03\\kelvis_ATD25_20260309.txt",
     "data": "20260309",
-    "conteudo": "teste"
+    "problema": "",
+    "causa": "",
+    "solucao": "",
+    "conteudo": "teste",
+    "arquivo": "docs\\2026\\03\\kelvis_ATD25_20260309.txt"
   },
   {
     "cliente": "kelvis",
     "atendimento": "2020",
-    "arquivo": "kelvis_ATD2020_20260309.txt",
-    "caminho": "docs\\2026\\03\\kelvis_ATD2020_20260309.txt",
     "data": "20260309",
-    "conteudo": "teste"
+    "problema": "",
+    "causa": "",
+    "solucao": "",
+    "conteudo": "teste",
+    "arquivo": "docs\\2026\\03\\kelvis_ATD2020_20260309.txt"
   },
   {
     "cliente": "kelvis",
     "atendimento": "250312222",
-    "arquivo": "kelvis_ATD250312222_20260309.txt",
-    "caminho": "docs\\2026\\03\\kelvis_ATD250312222_20260309.txt",
     "data": "20260309",
-    "conteudo": "treste"
+    "problema": "",
+    "causa": "",
+    "solucao": "",
+    "conteudo": "treste",
+    "arquivo": "docs\\2026\\03\\kelvis_ATD250312222_20260309.txt"
   },
   {
     "cliente": "kelvis",
     "atendimento": "123156465",
-    "arquivo": "kelvis_ATD123156465_20260309.txt",
-    "caminho": "docs\\2026\\03\\kelvis_ATD123156465_20260309.txt",
     "data": "20260309",
-    "conteudo": "tesasedfas"
+    "problema": "",
+    "causa": "",
+    "solucao": "",
+    "conteudo": "tesasedfas",
+    "arquivo": "docs\\2026\\03\\kelvis_ATD123156465_20260309.txt"
   },
   {
     "cliente": "kelvis",
     "atendimento": "2223335",
-    "arquivo": "kelvis_ATD2223335_20260309.txt",
-    "caminho": "docs\\2026\\03\\kelvis_ATD2223335_20260309.txt",
     "data": "20260309",
-    "conteudo": "testa"
+    "problema": "",
+    "causa": "",
+    "solucao": "",
+    "conteudo": "testa",
+    "arquivo": "docs\\2026\\03\\kelvis_ATD2223335_20260309.txt"
   },
   {
     "cliente": "kelvis",
     "atendimento": "1234156465",
-    "arquivo": "kelvis_ATD1234156465_20260309.txt",
-    "caminho": "docs\\2026\\03\\kelvis_ATD1234156465_20260309.txt",
     "data": "20260309",
-    "conteudo": "tesasdf"
+    "problema": "",
+    "causa": "",
+    "solucao": "",
+    "conteudo": "tesasdf",
+    "arquivo": "docs\\2026\\03\\kelvis_ATD1234156465_20260309.txt"
   },
   {
     "cliente": "asdfa",
     "atendimento": "1231321",
-    "arquivo": "asdfa_ATD1231321_20260309.txt",
-    "caminho": "docs\\2026\\03\\asdfa_ATD1231321_20260309.txt",
     "data": "20260309",
-    "conteudo": "asdfasd"
-  },
-  {
-    "cliente": "kelvis",
-    "atendimento": "2503",
-    "arquivo": "kelvis_ATD2503_20260309.txt",
-    "caminho": "docs\\2026\\03\\kelvis_ATD2503_20260309.txt",
-    "data": "20260309",
-    "conteudo": "erro de emissao de nota"
+    "problema": "",
+    "causa": "",
+    "solucao": "",
+    "conteudo": "asdfasd",
+    "arquivo": "docs\\2026\\03\\asdfa_ATD1231321_20260309.txt"
   },
   {
     "cliente": "kelvis",
     "atendimento": "223314",
+    "data": "",
     "problema": "ASDFA",
     "causa": "ASDFASD",
     "solucao": "ASDFAS",
-    "arquivo": "docs\\2026\\03\\kelvis_ATD223314_20260309.txt",
-    "conteudo": "asdfa asdfasd asdfas"
+    "conteudo": "asdfa asdfasd asdfas",
+    "arquivo": "docs\\2026\\03\\kelvis_ATD223314_20260309.txt"
   },
   {
     "cliente": "teste",
     "atendimento": "252510",
+    "data": "",
     "problema": "emissao de nota",
     "causa": "erro do cliente",
     "solucao": "ajustado nota",
-    "arquivo": "docs\\2026\\03\\teste_ATD252510_20260311.txt",
-    "conteudo": "emissao de nota erro do cliente ajustado nota"
+    "conteudo": "emissao de nota erro do cliente ajustado nota",
+    "arquivo": "docs\\2026\\03\\teste_ATD252510_20260311.txt"
   },
   {
     "cliente": "kelvis",
     "atendimento": "223316",
+    "data": "",
     "problema": "erro de oracle",
     "causa": "banco desativado",
     "solucao": "ativado banco",
-    "arquivo": "docs\\2026\\03\\kelvis_ATD223316_20260311.txt",
-    "conteudo": "erro de oracle banco desativado ativado banco"
+    "conteudo": "erro de oracle banco desativado ativado banco",
+    "arquivo": "docs\\2026\\03\\kelvis_ATD223316_20260311.txt"
   },
   {
     "cliente": "kelvis",
     "atendimento": "2525113",
+    "data": "",
     "problema": "ERRO NA VALIDAÇÃO DE NOTA FISCAL",
     "causa": "ICMS ST ERRADO",
     "solucao": "AJUSTADO ICMS NA TABELA TRIBUTOS_MOVIMENTOS",
-    "arquivo": "docs\\2026\\03\\kelvis_ATD2525113_20260311.txt",
-    "conteudo": "erro na validação de nota fiscal icms st errado ajustado icms na tabela tributos_movimentos"
+    "conteudo": "erro na validação de nota fiscal icms st errado ajustado icms na tabela tributos_movimentos",
+    "arquivo": "docs\\2026\\03\\kelvis_ATD2525113_20260311.txt"
   },
   {
     "cliente": "kelvis",
     "atendimento": "2222222",
+    "data": "",
     "problema": "SISTEMA NAO INICIA",
     "causa": "BANCO DE DADOS OFF-LINE",
     "solucao": "INICIADO VIA PUTTY",
-    "arquivo": "docs\\2026\\03\\kelvis_ATD2222222_20260311.txt",
-    "conteudo": "sistema nao inicia banco de dados off-line iniciado via putty"
+    "conteudo": "sistema nao inicia banco de dados off-line iniciado via putty",
+    "arquivo": "docs\\2026\\03\\kelvis_ATD2222222_20260311.txt"
   },
   {
     "cliente": "kelvis",
     "atendimento": "2525",
+    "data": "",
     "problema": "ERRO AO EMITIR NFCE",
     "causa": "EMISSOR FISCAL ESTAVA FECHADO",
     "solucao": "INICIADO O EMISSOR FISCAL NO SERVIDOR",
-    "arquivo": "docs\\2026\\03\\kelvis_ATD2525_20260311.txt",
-    "conteudo": "erro ao emitir nfce emissor fiscal estava fechado iniciado o emissor fiscal no servidor"
+    "conteudo": "erro ao emitir nfce emissor fiscal estava fechado iniciado o emissor fiscal no servidor",
+    "arquivo": "docs\\2026\\03\\kelvis_ATD2525_20260311.txt"
   },
   {
     "cliente": "teste",
     "atendimento": "2233",
+    "data": "",
     "problema": "SISTEMA NAO INICIA",
     "causa": "EMISSOR FISCAL ESTAVA FECHADO",
     "solucao": "NAO SEI",
-    "arquivo": "docs\\2026\\03\\teste_ATD2233_20260311.txt",
-    "conteudo": "sistema nao inicia emissor fiscal estava fechado nao sei"
+    "conteudo": "sistema nao inicia emissor fiscal estava fechado nao sei",
+    "arquivo": "docs\\2026\\03\\teste_ATD2233_20260311.txt"
   },
   {
     "cliente": "kelvis",
     "atendimento": "13654",
+    "data": "",
     "problema": "Bom dia\npreciso cancelar uma nota fiscal de recusa, não estou conseguindo.\nconsegue me ajudar por gentileza? e urgente",
     "causa": "Nota fiscal passou do prazo de cancelamento",
     "solucao": "Nota fiscal passou do prazo de cancelamento, orientado cliente como realizar devolução de venda no sistema.",
-    "arquivo": "docs\\2026\\03\\kelvis_ATD13654_20260312.txt",
-    "conteudo": "bom dia\npreciso cancelar uma nota fiscal de recusa, não estou conseguindo.\nconsegue me ajudar por gentileza? e urgente nota fiscal passou do prazo de cancelamento nota fiscal passou do prazo de cancelamento, orientado cliente como realizar devolução de venda no sistema."
+    "conteudo": "bom dia\npreciso cancelar uma nota fiscal de recusa, não estou conseguindo.\nconsegue me ajudar por gentileza? e urgente nota fiscal passou do prazo de cancelamento nota fiscal passou do prazo de cancelamento, orientado cliente como realizar devolução de venda no sistema.",
+    "arquivo": "docs\\2026\\03\\kelvis_ATD13654_20260312.txt"
   },
   {
     "cliente": "teste 4348",
     "atendimento": "676875",
+    "data": "",
     "problema": "teste p",
     "causa": "teste c",
     "solucao": "teste s",
-    "arquivo": "docs\\2026\\03\\teste_4348_ATD676875_20260312.txt",
-    "conteudo": "teste p teste c teste s"
+    "conteudo": "teste p teste c teste s",
+    "arquivo": "docs\\2026\\03\\teste_4348_ATD676875_20260312.txt"
   },
   {
     "cliente": "kelvis",
     "atendimento": "2213",
+    "data": "",
     "problema": "sistema nao inicia",
     "causa": "banco offline",
     "solucao": "iniciado banco via putty",
-    "arquivo": "docs\\2026\\03\\kelvis_ATD2213_20260313.txt",
-    "conteudo": "sistema nao inicia banco offline iniciado banco via putty"
+    "conteudo": "sistema nao inicia banco offline iniciado banco via putty",
+    "arquivo": "docs\\2026\\03\\kelvis_ATD2213_20260313.txt"
   },
   {
     "cliente": "TOTAL AUTO PEÇAS",
     "atendimento": "715811",
+    "data": "",
     "problema": ". PRECISAMOS VERIFICAR UM VALOR EM ABERTO DE CRÉDITO DE CLIENTES, CRÉDITOS ANTIGOS ENTRE OS ANOS 2000 A 2023. VALOR TOTAL R$ 2.562,61. GOSTARIAMOS DE ZERAR ESSES CRÉDITOS, ´POIS ACREDITAMOS QUE SE TRATA DE UM ERRO NO SISTEMA. \nFICO NO AGUARDO",
     "causa": "CREDITOS ANTIGOS E CLIENTE DESEJA BAIXAR O MESMO",
     "solucao": "FOI CONSULTADO OS CREDITOS E BAIXADO OS MESMOS COM O SEGUINTE SQL\nSELECT C.CREDITO_ID, C.VLR_CREDITO,C.VLR_BAIXADO,C.EMPRESA_ID,\n       (C.VLR_CREDITO - C.VLR_BAIXADO) AS VLR_DISPONIVEL\nFROM CREDITOS C\nWHERE C.DATA_CADASTRO BETWEEN TO_DATE('01/01/2000','DD/MM/YYYY') AND TO_DATE('31/12/2023','DD/MM/YYYY')\nAND   C.VLR_CREDITO <> C.VLR_BAIXADO\nAND C.TIPO_CONTA = 'CR'\n\n\nUPDATE CREDITOS C SET C.VLR_BAIXADO = C.VLR_CREDITO,C.OBSERVACAO = C.OBSERVACAO || 'BAIXADA VIA SCRIPT'\nWHERE C.DATA_CADASTRO BETWEEN TO_DATE('01/01/2000','DD/MM/YYYY') AND TO_DATE('31/12/2023','DD/MM/YYYY')\nAND   C.VLR_CREDITO <> C.VLR_BAIXADO\nAND C.TIPO_CONTA = 'CR'\n\n",
-    "arquivo": "docs\\2026\\03\\TOTAL_AUTO_PEÇAS_ATD715811_20260313.txt",
-    "conteudo": ". precisamos verificar um valor em aberto de crédito de clientes, créditos antigos entre os anos 2000 a 2023. valor total r$ 2.562,61. gostariamos de zerar esses créditos, ´pois acreditamos que se trata de um erro no sistema. \nfico no aguardo creditos antigos e cliente deseja baixar o mesmo foi consultado os creditos e baixado os mesmos com o seguinte sql\nselect c.credito_id, c.vlr_credito,c.vlr_baixado,c.empresa_id,\n       (c.vlr_credito - c.vlr_baixado) as vlr_disponivel\nfrom creditos c\nwhere c.data_cadastro between to_date('01/01/2000','dd/mm/yyyy') and to_date('31/12/2023','dd/mm/yyyy')\nand   c.vlr_credito <> c.vlr_baixado\nand c.tipo_conta = 'cr'\n\n\nupdate creditos c set c.vlr_baixado = c.vlr_credito,c.observacao = c.observacao || 'baixada via script'\nwhere c.data_cadastro between to_date('01/01/2000','dd/mm/yyyy') and to_date('31/12/2023','dd/mm/yyyy')\nand   c.vlr_credito <> c.vlr_baixado\nand c.tipo_conta = 'cr'\n\n"
+    "conteudo": ". precisamos verificar um valor em aberto de crédito de clientes, créditos antigos entre os anos 2000 a 2023. valor total r$ 2.562,61. gostariamos de zerar esses créditos, ´pois acreditamos que se trata de um erro no sistema. \nfico no aguardo creditos antigos e cliente deseja baixar o mesmo foi consultado os creditos e baixado os mesmos com o seguinte sql\nselect c.credito_id, c.vlr_credito,c.vlr_baixado,c.empresa_id,\n       (c.vlr_credito - c.vlr_baixado) as vlr_disponivel\nfrom creditos c\nwhere c.data_cadastro between to_date('01/01/2000','dd/mm/yyyy') and to_date('31/12/2023','dd/mm/yyyy')\nand   c.vlr_credito <> c.vlr_baixado\nand c.tipo_conta = 'cr'\n\n\nupdate creditos c set c.vlr_baixado = c.vlr_credito,c.observacao = c.observacao || 'baixada via script'\nwhere c.data_cadastro between to_date('01/01/2000','dd/mm/yyyy') and to_date('31/12/2023','dd/mm/yyyy')\nand   c.vlr_credito <> c.vlr_baixado\nand c.tipo_conta = 'cr'\n\n",
+    "arquivo": "docs\\2026\\03\\TOTAL_AUTO_PEÇAS_ATD715811_20260313.txt"
   },
   {
     "cliente": "BARREIRAS INFORMATICA",
     "atendimento": "715820",
+    "data": "",
     "problema": "VERIFICAR EMAILS DE NOTAS E BOLETOS QUE NÃO ESTÃO SENDO ENVIADOS",
     "causa": "CONFIGURAÇÃO ERRADA DE EMAIL",
     "solucao": "FOI VERIFICADO QUE O SMTP DO CLIENTE ALTEROU\nINFORMADO ENTAO O NOVO SMTP E O TIPO DE SEGURANÇA \nCONFIGURAÇÕES DE CONEXÃO SMTP\nSERVIDOR SMTP: S4US.HMSERVERS.NET\n\nPORTA: 587\n\n\nUSUÁRIO: COMERCIAL@BARREIRASINFORMATICA.COM.BR\n\n\nTIPO DE CRYPTOGRAFIA: UTNOTLSSUPPORT (NOTA: EMBORA ESTEJA MARCADO COMO \"SEM SUPORTE TLS\", NA PORTA 587 ESSE SERVIDOR ESPECÍFICO ACEITOU A CONEXÃO INICIAL SEM EXIGIR O COMANDO IMEDIATO DE SEGURANÇA).\n\n\nSERVIDOR UTILIZA AUTENTICAÇÃO? SIM (MARCADO).",
-    "arquivo": "docs\\2026\\03\\BARREIRAS_INFORMATICA_ATD715820_20260313.txt",
-    "conteudo": "verificar emails de notas e boletos que não estão sendo enviados configuração errada de email foi verificado que o smtp do cliente alterou\ninformado entao o novo smtp e o tipo de segurança \nconfigurações de conexão smtp\nservidor smtp: s4us.hmservers.net\n\nporta: 587\n\n\nusuário: comercial@barreirasinformatica.com.br\n\n\ntipo de cryptografia: utnotlssupport (nota: embora esteja marcado como \"sem suporte tls\", na porta 587 esse servidor específico aceitou a conexão inicial sem exigir o comando imediato de segurança).\n\n\nservidor utiliza autenticação? sim (marcado)."
+    "conteudo": "verificar emails de notas e boletos que não estão sendo enviados configuração errada de email foi verificado que o smtp do cliente alterou\ninformado entao o novo smtp e o tipo de segurança \nconfigurações de conexão smtp\nservidor smtp: s4us.hmservers.net\n\nporta: 587\n\n\nusuário: comercial@barreirasinformatica.com.br\n\n\ntipo de cryptografia: utnotlssupport (nota: embora esteja marcado como \"sem suporte tls\", na porta 587 esse servidor específico aceitou a conexão inicial sem exigir o comando imediato de segurança).\n\n\nservidor utiliza autenticação? sim (marcado).",
+    "arquivo": "docs\\2026\\03\\BARREIRAS_INFORMATICA_ATD715820_20260313.txt"
   },
   {
     "cliente": "UNIFARMA FARMACEUTICA",
     "atendimento": "715821",
+    "data": "",
     "problema": "ERRO AO EMITIR PEDIDO",
     "causa": "PENDENCIA DE ESTOQUE, OU LOTE VENCIDO OU QUANTIDADE NO LOTE",
     "solucao": "ORIENTADO CLIENTE A VERIFICAR OS PRODUTOS, COMO LOTE, DATA DE VALIDADE, OU ESTOQUE",
-    "arquivo": "docs\\2026\\03\\UNIFARMA_FARMACEUTICA_ATD715821_20260313.txt",
-    "conteudo": "erro ao emitir pedido pendencia de estoque, ou lote vencido ou quantidade no lote orientado cliente a verificar os produtos, como lote, data de validade, ou estoque"
-  },
-  {
-    "cliente": "Thais",
-    "atendimento": "250388",
-    "problema": "MARIA TEREZA NAO DORME",
-    "causa": "EXCESSO DE TELAS",
-    "solucao": "REDUZIR TELAS AO DECORRER DO DIA",
-    "arquivo": "docs\\2026\\03\\Thais_ATD250388_20260314.txt",
-    "conteudo": "maria tereza nao dorme excesso de telas reduzir telas ao decorrer do dia"
+    "conteudo": "erro ao emitir pedido pendencia de estoque, ou lote vencido ou quantidade no lote orientado cliente a verificar os produtos, como lote, data de validade, ou estoque",
+    "arquivo": "docs\\2026\\03\\UNIFARMA_FARMACEUTICA_ATD715821_20260313.txt"
   },
   {
     "cliente": "Thais",
     "atendimento": "010103",
+    "data": "",
     "problema": "MARIA TEREZA NAO DORME",
     "causa": "EXCESSO DE TELAS",
     "solucao": "REDUZIR TELAS AO DECORRER DO DIA",
-    "arquivo": "docs\\2026\\03\\Thais_ATD010103_20260314.txt",
-    "conteudo": "maria tereza nao dorme excesso de telas reduzir telas ao decorrer do dia"
+    "conteudo": "maria tereza nao dorme excesso de telas reduzir telas ao decorrer do dia",
+    "arquivo": "docs\\2026\\03\\Thais_ATD010103_20260314.txt"
+  },
+  {
+    "cliente": "kelvis",
+    "atendimento": "02133664",
+    "data": "",
+    "problema": "TESTE PLATAFORMA",
+    "causa": "ORACLE 12",
+    "solucao": "DESCANSAR É A SAIDA",
+    "conteudo": "teste plataforma oracle 12 descansar é a saida",
+    "arquivo": "docs\\2026\\03\\kelvis_ATD02133664_20260315.txt"
   }
 ]

@@ -1,0 +1,172 @@
+/* ====== LAYOUT GLOBAL ====== */
+
+body{
+background:#f4f6fb;
+font-family:Segoe UI, Arial;
+margin:0;
+}
+
+/* ====== HEADER ====== */
+
+header{
+background:#0d6efd;
+color:white;
+padding:12px 20px;
+font-size:22px;
+font-weight:bold;
+}
+
+/* ====== MENU ====== */
+
+.menu{
+background:white;
+padding:15px;
+border-bottom:1px solid #ddd;
+}
+
+.menu a{
+margin-right:15px;
+text-decoration:none;
+color:#0d6efd;
+font-weight:500;
+}
+
+.menu a:hover{
+text-decoration:underline;
+}
+
+/* ====== CONTAINER ====== */
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:20px;
+}
+
+/* ====== CARDS ====== */
+
+.card{
+
+background:white;
+padding:20px;
+margin-bottom:20px;
+border-radius:8px;
+box-shadow:0 2px 10px rgba(0,0,0,0.08);
+
+}
+
+.card h3{
+margin-top:0;
+color:#0d6efd;
+}
+
+/* ====== INPUT BUSCA ====== */
+
+input[type=text]{
+
+width:100%;
+padding:12px;
+border:1px solid #ccc;
+border-radius:6px;
+font-size:14px;
+
+}
+
+input[type=text]:focus{
+
+outline:none;
+border-color:#0d6efd;
+box-shadow:0 0 4px rgba(13,110,253,0.3);
+
+}
+
+/* ====== CHAT IA ====== */
+
+#chatBox{
+
+height:400px;
+overflow-y:auto;
+background:white;
+border:1px solid #ddd;
+border-radius:8px;
+padding:15px;
+
+}
+
+/* mensagem usuario */
+
+.chat-user{
+
+text-align:right;
+margin-bottom:12px;
+
+}
+
+.chat-user div{
+
+display:inline-block;
+background:#0d6efd;
+color:white;
+padding:10px;
+border-radius:10px;
+
+}
+
+/* mensagem IA */
+
+.chat-ai{
+
+text-align:left;
+margin-bottom:12px;
+
+}
+
+.chat-ai div{
+
+display:inline-block;
+background:#f1f3f5;
+padding:10px;
+border-radius:10px;
+
+}
+
+/* ====== DOC AI RESPOSTA ====== */
+
+.docai-resposta{
+
+border-left:4px solid #0d6efd;
+background:#f8f9fa;
+padding:10px;
+border-radius:6px;
+margin-bottom:10px;
+
+}
+
+/* ====== BOTÕES ====== */
+
+button{
+
+background:#0d6efd;
+color:white;
+border:none;
+padding:10px 14px;
+border-radius:6px;
+cursor:pointer;
+
+}
+
+button:hover{
+
+background:#0b5ed7;
+
+}
+
+/* ====== DESTAQUE BUSCA ====== */
+
+mark{
+
+background:#fff3a0;
+padding:2px 4px;
+border-radius:3px;
+
+}

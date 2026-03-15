@@ -1,0 +1,197 @@
+/* docai.css - CSS GLOBAL PARA TODO O DOCaI */
+
+/* ===== RESET ===== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Segoe UI", Arial, sans-serif;
+}
+
+/* ===== BODY ===== */
+body{
+  background:#f4f6fb;
+  color:#333;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar{
+  width:230px;
+  height:100vh;
+  background:#1f2937;
+  color:white;
+  position:fixed;
+  top:0;
+  left:0;
+  padding:20px;
+  overflow-y:auto;
+}
+.sidebar h2{
+  color:white;
+  margin-bottom:20px;
+}
+.sidebar a{
+  display:block;
+  color:#d1d5db;
+  text-decoration:none;
+  padding:8px 0;
+}
+.sidebar a:hover{
+  color:white;
+}
+.menu-item{
+  cursor:pointer;
+  margin:5px 0;
+  font-weight:500;
+  color:#d1d5db;
+}
+.menu-item:hover{
+  color:white;
+}
+.submenu{
+  display:none;
+  padding-left:15px;
+}
+
+/* ===== MAIN CONTENT ===== */
+.main{
+  margin-left:230px;
+  padding:20px;
+}
+
+/* ===== TOPBAR ===== */
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+  padding:10px 0;
+  border-bottom:1px solid #ddd;
+}
+
+/* ===== CARDS ===== */
+.card{
+  background:white;
+  padding:20px;
+  margin-bottom:20px;
+  border-radius:8px;
+  box-shadow:0 2px 10px rgba(0,0,0,0.08);
+}
+.card h4, .card h5{
+  color:#0d6efd;
+  margin-bottom:10px;
+}
+
+/* ===== INPUTS ===== */
+input, textarea, select{
+  width:100%;
+  padding:10px;
+  border:1px solid #ccc;
+  border-radius:6px;
+  margin-bottom:10px;
+  font-size:14px;
+  text-transform:uppercase; /* caixa alta automática */
+}
+input:focus, textarea:focus, select:focus{
+  outline:none;
+  border-color:#0d6efd;
+  box-shadow:0 0 4px rgba(13,110,253,0.4);
+}
+
+/* ===== BOTÕES ===== */
+button{
+  background:#0d6efd;
+  color:white;
+  border:none;
+  padding:10px 14px;
+  border-radius:6px;
+  cursor:pointer;
+  transition:0.2s;
+}
+button:hover{
+  background:#0b5ed7;
+}
+
+/* ===== CHAT ===== */
+#chatBox, .chat-container, #chat{
+  height:300px;
+  overflow-y:auto;
+  background:#f8f9fa;
+  padding:10px;
+  border-radius:8px;
+  border:1px solid #ddd;
+}
+.msg{
+  padding:10px;
+  margin-bottom:10px;
+  border-radius:10px;
+  display:inline-block;
+}
+.msg.user{
+  background:#0d6efd;
+  color:white;
+  text-align:right;
+  float:right;
+  clear:both;
+}
+.msg.ai{
+  background:#e9ecef;
+  color:#000;
+  text-align:left;
+  float:left;
+  clear:both;
+}
+.msg.info{
+  background:#f0f0f0;
+  color:#000;
+  font-style:italic;
+  clear:both;
+}
+/* limpar float chat */
+.chat:after, #chatBox:after{
+  content:"";
+  display:block;
+  clear:both;
+}
+
+/* ===== DESTAQUE ===== */
+mark{
+  background:#fff3a0;
+  color:black;
+  padding:2px 4px;
+  border-radius:3px;
+}
+
+/* ===== SCROLL ===== */
+::-webkit-scrollbar{
+  width:8px;
+}
+::-webkit-scrollbar-track{
+  background:#f1f1f1;
+}
+::-webkit-scrollbar-thumb{
+  background:#bbb;
+  border-radius:4px;
+}
+::-webkit-scrollbar-thumb:hover{
+  background:#888;
+}
+
+/* ===== ALERTAS ===== */
+.alert{
+  padding:12px;
+  border-radius:6px;
+  margin-bottom:10px;
+}
+.alert-info{
+  background:#d1ecf1;
+  border:1px solid #bee5eb;
+}
+.alert-warning{
+  background:#fff3cd;
+  border:1px solid #ffeeba;
+}
+.alert-danger{
+  background:#f8d7da;
+  border:1px solid #f5c6cb;
+}

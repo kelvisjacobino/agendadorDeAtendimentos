@@ -1,0 +1,257 @@
+/* ================================
+   RESET
+================================ */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* ================================
+   BODY
+================================ */
+
+body{
+background:#f4f6f9;
+color:#333;
+}
+
+/* ================================
+   TITULOS
+================================ */
+
+h1,h2,h3,h4{
+color:#0d6efd;
+margin-bottom:10px;
+}
+
+/* ================================
+   INPUTS
+================================ */
+
+input, textarea, select{
+
+width:100%;
+padding:10px;
+border:1px solid #ccc;
+border-radius:6px;
+margin-bottom:10px;
+font-size:14px;
+
+}
+
+input:focus, textarea:focus{
+
+outline:none;
+border-color:#0d6efd;
+box-shadow:0 0 4px rgba(13,110,253,0.4);
+
+}
+
+/* ================================
+   BOTÕES
+================================ */
+
+button{
+
+background:#0d6efd;
+color:white;
+border:none;
+padding:10px 15px;
+border-radius:6px;
+cursor:pointer;
+transition:0.2s;
+
+}
+
+button:hover{
+
+background:#0b5ed7;
+
+}
+
+/* ================================
+   CARDS
+================================ */
+
+.card{
+
+background:white;
+padding:15px;
+border-radius:8px;
+box-shadow:0 2px 8px rgba(0,0,0,0.08);
+margin-bottom:15px;
+
+}
+
+.card-title{
+
+font-size:16px;
+font-weight:bold;
+color:#0d6efd;
+
+}
+
+/* ================================
+   RESULTADOS DE BUSCA
+================================ */
+
+.resultado-card{
+
+background:white;
+padding:15px;
+border-left:4px solid #0d6efd;
+border-radius:6px;
+margin-bottom:10px;
+box-shadow:0 1px 5px rgba(0,0,0,0.1);
+
+}
+
+/* ================================
+   CHAT IA
+================================ */
+
+#chatBox{
+
+height:400px;
+overflow-y:auto;
+padding:15px;
+background:white;
+border-radius:8px;
+border:1px solid #ddd;
+margin-bottom:10px;
+
+}
+
+/* mensagem usuario */
+
+.msg-user{
+
+text-align:right;
+margin-bottom:10px;
+
+}
+
+.msg-user div{
+
+display:inline-block;
+background:#0d6efd;
+color:white;
+padding:10px;
+border-radius:10px;
+
+}
+
+/* mensagem IA */
+
+.msg-ai{
+
+text-align:left;
+margin-bottom:10px;
+
+}
+
+.msg-ai div{
+
+display:inline-block;
+background:#e9ecef;
+padding:10px;
+border-radius:10px;
+
+}
+
+/* ================================
+   DOC AI RESPOSTA
+================================ */
+
+.docai-card{
+
+background:#f8f9fa;
+border-left:4px solid #0d6efd;
+padding:12px;
+border-radius:6px;
+margin-bottom:10px;
+
+}
+
+/* ================================
+   BADGES
+================================ */
+
+.badge{
+
+background:#6c757d;
+color:white;
+padding:4px 8px;
+border-radius:4px;
+font-size:12px;
+
+}
+
+/* ================================
+   HIGHLIGHT PESQUISA
+================================ */
+
+mark{
+
+background:#fff3a0;
+color:black;
+padding:2px 4px;
+border-radius:3px;
+
+}
+
+/* ================================
+   SCROLL BONITO
+================================ */
+
+::-webkit-scrollbar{
+width:8px;
+}
+
+::-webkit-scrollbar-track{
+background:#f1f1f1;
+}
+
+::-webkit-scrollbar-thumb{
+background:#bbb;
+border-radius:4px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+background:#888;
+}
+
+/* ================================
+   ALERTAS
+================================ */
+
+.alert{
+
+padding:12px;
+border-radius:6px;
+margin-bottom:10px;
+
+}
+
+.alert-warning{
+
+background:#fff3cd;
+border:1px solid #ffeeba;
+
+}
+
+.alert-danger{
+
+background:#f8d7da;
+border:1px solid #f5c6cb;
+
+}
+
+.alert-info{
+
+background:#d1ecf1;
+border:1px solid #bee5eb;
+
+}

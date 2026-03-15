@@ -14,6 +14,10 @@ const jwt = require("jsonwebtoken");
 const { autenticar } = require("./auth/usuarios");
 const auth = require("./auth/authMiddleware");
 require("./modules/insights/insights.routes");
+const aiRoutes = require("./Ai/routes/aiRoutes");
+
+
+
 
 const app = express();
 
@@ -25,6 +29,7 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
+app.use("/api/ai", aiRoutes);
 
 const PORT = process.env.PORT || 8081;
 

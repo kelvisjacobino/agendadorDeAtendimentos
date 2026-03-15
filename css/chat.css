@@ -1,0 +1,15 @@
+.info{
+ text-align:center;
+ font-size:12px;
+ color:#888;
+ margin:10px;
+}
+input, textarea {
+  text-transform: uppercase;
+}
+
+mark{
+background:#fff3a0;
+padding:2px 4px;
+border-radius:3px;
+}
